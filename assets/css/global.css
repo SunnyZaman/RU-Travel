@@ -10,9 +10,9 @@
 }
 .auth-button{
     color: #ffffff;
-    background: #0205b0;
+    background: #428BCA;
 }
 .auth-button:hover{
-    background: #ffffff;
-    border: 1px solid #0205b0;
+    background: #3071A9;
+    color: #ffffff;
 }
