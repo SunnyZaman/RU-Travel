@@ -1,0 +1,18 @@
+.full-width{
+    width:100%;
+}
+.link-text{
+    color:#0205b0;
+}
+.link-text:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.auth-button{
+    color: #ffffff;
+    background: #0205b0;
+}
+.auth-button:hover{
+    background: #ffffff;
+    border: 1px solid #0205b0;
+}
