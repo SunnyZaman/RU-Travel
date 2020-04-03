@@ -19,12 +19,14 @@ app.controller('app-controller', function ($scope, $http) {
     };
 
     $scope.submitRegister = function () {
+        console.log($scope.registerData);
+        
         $http({
             method: "POST",
             url: "register.php",
             data: $scope.registerData
         }).then(function (response) {
-            console.log(response);
+            console.log("Response: ", response);
 
             $scope.alertMsg = true;
             if (response.data.error != '') {

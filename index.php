@@ -1,5 +1,5 @@
 <?php
-include('database.php');
+include('server/database.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -28,12 +28,12 @@ session_start();
             <div class="card">
                 <div class="card-header font-weight-bold">{{authTitle}}</div>
                 <div class="card-body">
-                    <form method="post" ng-submit="submitLogin()" ng-if="login">
+                    <form method="post" ng-submit="submitLogin()" ng-show="login">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label>Email:</label>
-                                    <input type="text" name="email" ng-model="loginData.email" class="form-control" />
+                                    <input type="email" name="email" ng-model="loginData.email" class="form-control" />
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
@@ -53,7 +53,7 @@ session_start();
                             </div>
                         </div>
                     </form>
-                    <form method="post" ng-submit="submitRegister()" ng-if="!login">
+                    <form method="post" ng-submit="submitRegister()" ng-show="!login">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
@@ -73,7 +73,7 @@ session_start();
 
                                 <div class="form-group">
                                     <label>Email:</label>
-                                    <input type="text" name="email" ng-model="registerData.email"
+                                    <input type="email" name="email" ng-model="registerData.email"
                                         class="form-control" />
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ session_start();
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label>Phone Number:</label>
-                                    <input type="text" name="phoneNumber" ng-model="registerData.phoneNumber"
+                                    <input type="tel"  pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}" name="phoneNumber" ng-model="registerData.phoneNumber"
                                         class="form-control" />
                                 </div>
                             </div>

@@ -9,28 +9,19 @@
                 <div class="card-header font-weight-bold">{{authTitle}}</div>
                 <div class="card-body">
                     <form method="post" ng-submit="submitLogin()" ng-if="login">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label>Email:</label>
-                                    <input type="text" name="email" ng-model="loginData.email" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label>Password:</label>
-                                    <input type="password" name="password" ng-model="loginData.password"
-                                        class="form-control" />
-                                </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <input type="submit" name="login" class="btn auth-button full-width" value="Login" />
-                            </div>
-                            <div class="col-12 text-center">
-                                <p>Don't have an account? <span class="link-text" ng-click="showRegister()">Sign
-                                        Up</span>
-                                </p>
-                            </div>
+                        <div class="form-group">
+                            <label>Enter Your Email</label>
+                            <input type="text" name="email" ng-model="loginData.email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Your Password</label>
+                            <input type="password" name="password" ng-model="loginData.password" class="form-control" />
+                        </div>
+                        <div class="form-group" align="center">
+                            <input type="submit" name="login" class="btn btn-primary" value="Login" />
+                            <br />
+                            <input type="button" name="register_link" class="btn btn-primary btn-link"
+                                ng-click="showRegister()" value="Register" />
                         </div>
                     </form>
                     <form method="post" ng-submit="submitRegister()" ng-if="!login">
@@ -78,16 +69,12 @@
                                         class="form-control" />
                                 </div>
                             </div>
-                            <div class="col-12 text-center">
-                                <input type="submit" name="register" class="btn auth-button full-width"
-                                    value="Register" />
+                            <div class="form-group text-center">
+                                <input type="submit" name="register" class="btn btn-primary" value="Register" />
+                                <br />
+                                <input type="button" name="login_link" class="btn btn-primary btn-link"
+                                    ng-click="showLogin()" value="Login" />
                             </div>
-                            <div class="col-12 text-center">
-                                <p>Already have an account? <span class="link-text" ng-click="showLogin()">Sign
-                                        In</span>
-                                </p>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
