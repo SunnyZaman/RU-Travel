@@ -1,66 +1,52 @@
 <?php
-
-//login.php
-
 include('../connection.php');
-
 session_start();
-
-$form_data = json_decode(file_get_contents("php://input"));
+$login_data = json_decode(file_get_contents("php://input"),true);
 
 $validation_error = '';
 
-if(empty($form_data->email))
+if(empty($login_data['email']))
 {
  $error[] = 'Email is Required';
 }
 else
 {
- if(!filter_var($form_data->email, FILTER_VALIDATE_EMAIL))
+ if(!filter_var($login_data['email'], FILTER_VALIDATE_EMAIL))
  {
-  $error[] = 'Invalid Email Format';
+  $error[] = 'Invalid Email';
  }
  else
  {
-  $data[':email'] = $form_data->email;
+  $email = $login_data['email'];
  }
 }
 
-if(empty($form_data->password))
+if(empty($login_data['password']))
 {
  $error[] = 'Password is Required';
 }
 
 if(empty($error))
 {
- $query = "
- SELECT * FROM register 
- WHERE email = :email
- ";
- $statement = $connect->prepare($query);
- if($statement->execute($data))
- {
-  $result = $statement->fetchAll();
-  if($statement->rowCount() > 0)
-  {
-   foreach($result as $row)
-   {
-    if(password_verify($form_data->password, $row["password"]))
-    {
-     $_SESSION["name"] = $row["name"];
-    }
+ $query = "SELECT * FROM RUTravelUsers WHERE Email = '".$email."'";
+ $result = $conn->query($query);
+   if($result->num_rows > 0) {
+       while($row = $result->fetch_assoc()){
+           if(password_verify($login_data['password'], $row["UserPassword"]))
+           {
+               $_SESSION["Email"] = $row["Email"];
+        }
     else
     {
-     $validation_error = 'Wrong Password';
+     $validation_error = 'Invalid Password';
     }
    }
   }
   else
   {
-   $validation_error = 'Wrong Email';
+   $validation_error = 'Invalid Email';
   }
  }
-}
 else
 {
  $validation_error = implode(", ", $error);

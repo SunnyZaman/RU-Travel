@@ -1,69 +1,65 @@
 <?php
-
-//register.php
-
 include('../connection.php');
-
-$form_data = json_decode(file_get_contents("php://input"), true);
+$register_data = json_decode(file_get_contents("php://input"), true);
 
 $message = '';
 $validation_error = '';
 $isAdmin = 0;
-if(empty($form_data['firstName']))
+if(empty($register_data['firstName']))
 {
  $error[] = 'First Name is Required';
 }
 else
 {
- $firstName = $form_data['firstName'];
+ $firstName = $register_data['firstName'];
 }
-if(empty($form_data['lastName']))
+if(empty($register_data['lastName']))
 {
  $error[] = 'Last Name is Required';
 }
 else
 {
- $lastName = $form_data['lastName'];
+ $lastName = $register_data['lastName'];
 }
-if(empty($form_data['email']))
+if(empty($register_data['email']))
 {
  $error[] = 'Email is Required';
 }
 else
 {
- if(!filter_var($form_data['email'], FILTER_VALIDATE_EMAIL))
+ if(!filter_var($register_data['email'], FILTER_VALIDATE_EMAIL))
  {
   $error[] = 'Invalid Email Format';
  }
  else
  {
-  $email = $form_data['email'];
+  $email = $register_data['email'];
  }
 }
 
-if(empty($form_data['password']))
+if(empty($register_data['password']))
 {
  $error[] = 'Password is Required';
 }
 else
 {
- $password = password_hash($form_data['password'], PASSWORD_DEFAULT);
+ $password = password_hash($register_data['password'], PASSWORD_DEFAULT);
 }
-if(empty($form_data['address']))
+if(empty($register_data['address']))
 {
  $error[] = 'Address is Required';
 }
 else
 {
- $address= $form_data['address'];
+ $address= $register_data['address'];
 }
-if(empty($form_data['phoneNumber']))
+if(empty($register_data['phoneNumber']))
 {
  $error[] = 'Phone Number is Required';
 }
 else
 {
- $phoneNumber = $form_data['phoneNumber'];
+ $phoneNumber = $register_data['phoneNumber'];
 }
 if(empty($error))
 {

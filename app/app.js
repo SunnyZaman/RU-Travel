@@ -23,7 +23,7 @@ app.controller('app-controller', function ($scope, $http) {
         
         $http({
             method: "POST",
-            url: "register.php",
+            url: "server/auth/register.php",
             data: $scope.registerData
         }).then(function (response) {
             console.log("Response: ", response);
@@ -46,19 +46,23 @@ app.controller('app-controller', function ($scope, $http) {
     };
 
     $scope.submitLogin = function () {
+        console.log($scope.loginData);
         $http({
             method: "POST",
-            url: "login.php",
+            url: "server/auth/login.php",
             data: $scope.loginData
-        }).success(function (data) {
-            if (data.error != '') {
+        }).then(function (response) {
+            console.log("Response: ", response);
+            if (response.data.error != '') {
                 $scope.alertMsg = true;
                 $scope.alertClass = 'alert-danger';
-                $scope.alertMessage = data.error;
+                $scope.alertMessage = response.data.error;
             }
             else {
                 location.reload();
             }
+        }, function (error) {
+            console.error(error);
         });
     };
 
