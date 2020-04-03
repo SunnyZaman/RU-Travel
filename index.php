@@ -9,27 +9,19 @@ session_start();
 <!DOCTYPE html>
 <html>
  <head>
-  <title>AngularJS Register Login Script using PHP Mysql</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <title>RU Travel</title>
+  <link href="assets/bootstrap.min.css" rel="stylesheet">
+  <script src="app/lib/angular.min.js"></script>
+  <script src="app/app.js"></script>
   <style>
-  .form_style
-  {
-   width: 600px;
-   margin: 0 auto;
-  }
   </style>
  </head>
  <body>
-  <br />
-   <h3 align="center">AngularJS Register Login Script using PHP Mysql</h3>
-  <br />
-
-  <div ng-app="login_register_app" ng-controller="login_register_controller" class="container form_style">
-   <?php
-   if(!isset($_SESSION["name"]))
+     <?php
+   if(!isset($_SESSION["email"]))
    {
-   ?>
+       ?>
+       <div ng-app="app" ng-controller="app-controller" class="container">
    <div class="alert {{alertClass}} alert-dismissible" ng-show="alertMsg">
     <a href="#" class="close" ng-click="closeMsg()" aria-label="close">&times;</a>
     {{alertMessage}}
@@ -96,6 +88,7 @@ session_start();
      </form>
     </div>
    </div>
+   </div>
    <?php
    }
    else
@@ -114,72 +107,5 @@ session_start();
    }
    ?>
 
-  </div>
  </body>
 </html>
-
-<script>
-var app = angular.module('login_register_app', []);
-app.controller('login_register_controller', function($scope, $http){
- $scope.closeMsg = function(){
-  $scope.alertMsg = false;
- };
-
- $scope.login_form = true;
-
- $scope.showRegister = function(){
-  $scope.login_form = false;
-  $scope.register_form = true;
-  $scope.alertMsg = false;
- };
-
- $scope.showLogin = function(){
-  $scope.register_form = false;
-  $scope.login_form = true;
-  $scope.alertMsg = false;
- };
-
- $scope.submitRegister = function(){
-  $http({
-   method:"POST",
-   url:"register.php",
-   data:$scope.registerData
-  }).success(function(data){
-      console.log(data);
-      
-   $scope.alertMsg = true;
-   if(data.error != '')
-   {
-    $scope.alertClass = 'alert-danger';
-    $scope.alertMessage = data.error;
-   }
-   else
-   {
-    $scope.alertClass = 'alert-success';
-    $scope.alertMessage = data.message;
-    $scope.registerData = {};
-   }
-  });
- };
-
- $scope.submitLogin = function(){
-  $http({
-   method:"POST",
-   url:"login.php",
-   data:$scope.loginData
-  }).success(function(data){
-   if(data.error != '')
-   {
-    $scope.alertMsg = true;
-    $scope.alertClass = 'alert-danger';
-    $scope.alertMessage = data.error;
-   }
-   else
-   {
-    location.reload();
-   }
-  });
- };
-
-});
-</script>
