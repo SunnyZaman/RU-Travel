@@ -12,18 +12,20 @@ session_start();
   <title>RU Travel</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
   <link href="assets/css/global.css" rel="stylesheet">
   <script src="app/lib/angular.min.js"></script>
   <script src="app/app.js"></script>
   <style>
   </style>
  </head>
- <body>
+ <body ng-app="app" >
      <?php
    if(!isset($_SESSION["Email"]))
    {
        ?>
- <div ng-app="app" ng-controller="app-controller" class="container-fluid mt-4">
+ <div ng-controller="app-controller" class="container-fluid mt-4">
     <div class="alert {{alertClass}} alert-dismissible" ng-show="alertMsg">
         <a href="#" class="close" ng-click="closeMsg()" aria-label="close">&times;</a>
         {{alertMessage}}
@@ -124,6 +126,7 @@ session_start();
    else
    {
    ?>
+   <header ng-include="'views/header.html'"></header>
    <div class="panel panel-default">
     <div class="panel-heading">
      <h3 class="panel-title">Welcome to system</h3>
