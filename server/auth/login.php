@@ -37,6 +37,7 @@ if(empty($error))
                $_SESSION["Email"] = $row["Email"];
                $_SESSION["FirstName"] = $row["FirstName"];
                $_SESSION["LastName"] = $row["LastName"];
+               $_SESSION["isAdmin"]  = $row["isAdmin"];
         }
     else
     {

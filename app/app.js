@@ -1,6 +1,5 @@
 var app = angular.module('app', []);
 app.controller('app-controller', function ($scope, $http) {
-    $scope.admin = false;
     $scope.closeMsg = function () {
         $scope.alertMsg = false;
     };
@@ -60,7 +59,7 @@ app.controller('app-controller', function ($scope, $http) {
                 $scope.alertMessage = response.data.error;
             }
             else {
-                // location.reload();
+                location.reload();
             }
         }, function (error) {
             console.error(error);
