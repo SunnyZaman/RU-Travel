@@ -35,6 +35,8 @@ if(empty($error))
            if(password_verify($login_data['password'], $row["UserPassword"]))
            {
                $_SESSION["Email"] = $row["Email"];
+               $_SESSION["FirstName"] = $row["FirstName"];
+               $_SESSION["LastName"] = $row["LastName"];
         }
     else
     {

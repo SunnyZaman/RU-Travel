@@ -126,7 +126,7 @@ session_start();
    else
    {
    ?>
-   <header ng-include="'views/header.html'"></header>
+   <header ng-include="'views/header.php'"></header>
    <div class="panel panel-default">
     <div class="panel-heading">
      <h3 class="panel-title">Welcome to system</h3>
