@@ -1,6 +1,9 @@
 var app = angular.module('app', ['ngRoute']);
 app.config(['$routeProvider', function($routeProvider){
     $routeProvider
+    .when('/home',{
+        templateUrl: 'views/home.php'
+    })
     .when('/admin',{
         templateUrl: 'views/admin/admin.php',
     })
@@ -8,7 +11,7 @@ app.config(['$routeProvider', function($routeProvider){
         templateUrl: 'views/user/plans.php'
     })
     .otherwise({
-        redirectTo:'/plans'
+        redirectTo:'/home'
     })
 }]);
 app.controller('app-controller', function ($scope, $http) {

@@ -127,9 +127,7 @@ session_start();
    {
    ?>
    <header ng-include="'views/header.php'"></header>
-   <div class="container-fluid mt-2">
-       <main ng-view></main>
-   </div>
+    <main ng-view></main>
    <?php
    }
    ?>
