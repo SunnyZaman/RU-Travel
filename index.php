@@ -11,21 +11,21 @@ session_start();
     <meta http-equiv="Content-Language" content="en_US" /> 
   <title>RU Travel</title>
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <link href="assets/css/global.css" rel="stylesheet">
+  <link href="app/css/bootstrap.min.css" rel="stylesheet">
+  <script src="app/js/jquery.min.js"></script>
+  <script src="app/js/bootstrap.min.js"></script>
+  <link href="app/css/global.css" rel="stylesheet">
   <script src="app/lib/angular.min.js"></script>
+  <script src="app/lib/angular-route.min.js"></script>
   <script src="app/app.js"></script>
   <style>
   </style>
  </head>
- <body ng-app="app" >
+ <body ng-app="app" ng-controller="app-controller">
      <?php
    if(!isset($_SESSION["Email"]))
-   {
-       ?>
- <div ng-controller="app-controller" class="container-fluid mt-4">
+   { ?>
+ <div class="container-fluid mt-4">
     <div class="alert {{alertClass}} alert-dismissible" ng-show="alertMsg">
         <a href="#" class="close" ng-click="closeMsg()" aria-label="close">&times;</a>
         {{alertMessage}}
@@ -127,14 +127,8 @@ session_start();
    {
    ?>
    <header ng-include="'views/header.php'"></header>
-   <div class="panel panel-default">
-    <div class="panel-heading">
-     <h3 class="panel-title">Welcome to system</h3>
-    </div>
-    <div class="panel-body">
-     <h1>Welcome - <?php echo $_SESSION["Email"];?></h1>
-     <a href="server/auth/logout.php">Logout</a>
-    </div>
+   <div class="container-fluid mt-2">
+       <main ng-view></main>
    </div>
    <?php
    }
