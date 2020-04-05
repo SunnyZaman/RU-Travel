@@ -1,5 +1,6 @@
 <?php
 session_start();
-include('app/route-check/route-guard.php');
-?>
+include('../../app/routing/route-guards/admin-guard.php');
+if($_SESSION['isAdmin']==='1') : ?>
 <h1>Admin</h1>
+<?php endif; ?>
