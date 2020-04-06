@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('app-controller', function ($scope, $http) {
+app.controller('auth-controller', function ($scope, $http) {
     $scope.closeMsg = function () {
         $scope.alertMsg = false;
     };

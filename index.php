@@ -18,15 +18,17 @@ session_start();
   <script src="app/lib/angular.min.js"></script>
   <script src="app/lib/angular-route.min.js"></script>
   <script src="app/routing/routes.js"></script>
-  <script src="app/app.js"></script>
+  <script src="app/controllers/authenticate.js"></script>
+  <script src="app/controllers/plans.js"></script>
+  <script src="app/controllers/dropdown.js"></script>
   <style>
   </style>
  </head>
- <body ng-app="app" ng-controller="app-controller">
+ <body ng-app="app">
      <?php
    if(!isset($_SESSION["Email"]))
    { ?>
- <div class="container-fluid mt-4">
+ <div class="container-fluid mt-4" ng-controller="auth-controller">
     <div class="alert {{alertClass}} alert-dismissible" ng-show="alertMsg">
         <a href="#" class="close" ng-click="closeMsg()" aria-label="close">&times;</a>
         {{alertMessage}}

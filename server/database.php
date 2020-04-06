@@ -12,9 +12,19 @@
  isAdmin BOOLEAN NOT NULL
  )";
 
- if ($conn->query($sql) === TRUE) {
-    //  echo "Student Records Table created successfully";
- } else {
+ if ($conn->query($sql) === FALSE) {
      echo "Error creating table: " . $conn->error;
  }
+ $sql = "CREATE TABLE IF NOT EXISTS RUTravelPlaces (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Continent VARCHAR(250) NOT NULL,
+    Country VARCHAR(250) NOT NULL,
+    City VARCHAR(250) NOT NULL,
+    PlaceType VARCHAR(250) NOT NULL,
+    Attraction VARCHAR(250) NOT NULL
+    )";
+   
+    if ($conn->query($sql) === FALSE){
+        echo "Error creating table: " . $conn->error;
+    }
 ?>

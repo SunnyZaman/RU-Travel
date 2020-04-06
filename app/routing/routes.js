@@ -7,7 +7,7 @@ app.config(['$routeProvider', function($routeProvider){
     .when('/admin',{
         templateUrl: 'views/admin/admin.php',
     })
-    .when('/plan',{
+    .when('/plans',{
         templateUrl: 'views/user/plans.php'
     })
     .otherwise({
