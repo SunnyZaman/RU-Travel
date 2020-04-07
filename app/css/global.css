@@ -43,3 +43,6 @@
 	-webkit-transform: scale(1);
 	transform: scale(1);
 }
+.buttonIcon{
+    margin-right: 5px;
+}
