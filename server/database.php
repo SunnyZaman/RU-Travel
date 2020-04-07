@@ -83,4 +83,12 @@
     // } else {
     //     echo "Error: " . $sql . "<br>" . $conn->error;
     // }
+
+    //   $sql = "INSERT INTO RUTravelAttractions(AttractionImage, AttractionAddress, AttractionDescription, Price, Coordinates, Attraction)
+    // VALUES ('Asia', 'Malaysia', 'Gombak', 'History', 'Batu Caves');";
+    // if ($conn->multi_query($sql) === TRUE) {
+    //     echo "New records created successfully";
+    // } else {
+    //     echo "Error: " . $sql . "<br>" . $conn->error;
+    // }
 ?>

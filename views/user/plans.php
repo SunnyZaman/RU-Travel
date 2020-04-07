@@ -57,5 +57,7 @@ if($_SESSION['isAdmin']==='0') : ?>
             </div>
      </div>
     </form>
+    <div id="mapId"></div>
+
 </div>
 <?php endif; ?>
