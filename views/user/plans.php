@@ -7,28 +7,34 @@ if($_SESSION['isAdmin']==='0') : ?>
 <div class="form-row">
         <div class="form-group col-xs-12 col-md-3">
         <label for="continent">Continent:</label>
-            <select name="continent" id="continent" class="form-control" ng-model="continent" ng-change="changeCountry()" >
+            <select name="continent" id="continent" class="form-control" ng-model="continent" >
         <option value="">Select Continent</option>
-        <option ng-repeat="place in places" value="{{place.Continent}}">{{place.Continent}}</option>  
+        <option ng-repeat="continent in continents" value="{{continent}}">{{continent}}</option>  
 
     </select>
         </div>
         <div class="form-group col-xs-12 col-md-3">
         <label for="country">Country:</label>
-            <select name="country" id="country" class="form-control">
+            <select name="country" id="country" class="form-control" ng-model="country">
             <option value="">Select Country</option>
+            <option ng-repeat="country in countries" value="{{country}}">{{country}}</option>  
+
             </select>
         </div>
         <div class="form-group col-xs-12 col-md-3">
         <label for="city">City:</label>
-            <select  name="city" id="city" class="form-control">
+            <select  name="city" id="city" class="form-control" ng-model="city">
             <option value="">Select City</option>
+            <option ng-repeat="city in cities" value="{{city}}" >{{city}}</option>  
+
             </select>
         </div>
         <div class="form-group col-xs-12 col-md-3">
         <label for="place">Place:</label>
-            <select  name="place" id="place" class="form-control">
+            <select  name="place" id="place" class="form-control"  ng-model="placeType">
             <option value="">Select Place</option>
+            <option ng-repeat="placeType in placeTypes" value="{{placeType}}" >{{placeType}}</option>  
+
             </select>
         </div>
     </div>
