@@ -12,6 +12,7 @@ session_start();
   <title>RU Travel</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link href="app/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   <script src="app/js/jquery.min.js"></script>
   <script src="app/js/bootstrap.min.js"></script>
   <link href="app/css/global.css" rel="stylesheet">
@@ -20,7 +21,6 @@ session_start();
   <script src="app/routing/routes.js"></script>
   <script src="app/controllers/authenticate.js"></script>
   <script src="app/controllers/plans.js"></script>
-  <script src="app/controllers/dropdown.js"></script>
   <style>
   </style>
  </head>
