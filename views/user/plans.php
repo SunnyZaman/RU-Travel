@@ -3,7 +3,7 @@ session_start();
 include('../../app/routing/route-guards/user-guard.php');
 if($_SESSION['isAdmin']==='0') : ?>
    <div class="container-fluid mt-4" ng-controller="plans-controller" ng-init="loadPlaces()">
-<form method="post" ng-submit="search()">
+<form method="get" ng-submit="search()">
 <div class="form-row">
         <div class="form-group col-xs-12 col-md-3">
         <label for="continent">Continent:</label>
@@ -57,7 +57,32 @@ if($_SESSION['isAdmin']==='0') : ?>
             </div>
      </div>
     </form>
-    <div id="mapId"></div>
+<section ng-if="searched">
+<div ng-switch="results.length>0">
+    <table ng-switch-when="true" class="table table-striped">
+    <tr>
+        <th>Selected</th>
+        <th>Attraction</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Continent</th>
+        <th>Place</th>
+        <th>Price</th>
+    </tr>
+    <tr ng-repeat="(key, value) in results">
+        <td><input type="checkbox" ng-model="value.isSelected"></td>
+        <td>{{ value.Attraction }}</td>
+        <td>{{ value.City }}</td>
+        <td>{{ value.Country }}</td>
+        <td>{{ value.Continent }}</td>
+        <td>{{ value.PlaceType }}</td>
+        <td>{{ value.Price | currency:'$' }}</td>
+    </tr>
+    </table>
+    <p ng-switch-when="false" class="font-weight-bold">No Results</p>
+    </div>
+    </section>
+    <!-- <div id="mapId"></div> -->
 
 </div>
 <?php endif; ?>
