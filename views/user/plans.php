@@ -59,10 +59,10 @@ if($_SESSION['isAdmin']==='0') : ?>
     </form>
 <section ng-if="searched">
 <div ng-switch="results.length>0">
-<div ng-switch-when="true">
+<div ng-switch-when="true" >
 <h1 class="table-title"> Search Results</h1>
 <p class="font-weight-light font-italic float-left">Select one or two places then click the view plans button</p>
-<button type="button" class="btn btn-info float-right">View Plans</button>
+<button type="button" ng-click="viewPlans()" ng-disabled="disableView" class="btn btn-info float-right">View Plans</button>
     <table class="table table-striped">
     <tr>
         <th>Selected</th>

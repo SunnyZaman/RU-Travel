@@ -2,6 +2,7 @@ var app = angular.module('app');
 app.controller('plans-controller', function ($scope, $http) {
     $scope.searchData = { continent: "", country: "", city: "", placeType: "", minPrice: null, maxPrice: null };
     $scope.searched = false;
+    $scope.disableView = true;
     $scope.loadPlaces = function () {
         $http.get("server/places/dropdown.php")
             .then(function (response) {
@@ -56,7 +57,9 @@ app.controller('plans-controller', function ($scope, $http) {
                 var selected = value.filter(function (item) {
                     return item.isSelected == true;
                 });
-
+                if (selected.length === 0) {
+                    $scope.disableView = true;
+                }
                 if (selected.length >= 2) {
                     $scope.results.forEach(item=>{
                         if (item.isSelected === false) {
@@ -67,13 +70,26 @@ app.controller('plans-controller', function ($scope, $http) {
                 else {
                     $scope.results.forEach(item=>{
                         item.disabled = false;
+                        if (selected.length !== 0) {
+                        $scope.disableView = false;
+                        }
                     });
                 }
             }
 
         }, true);
 
-
+        $scope.viewPlans = function () {
+            $scope.searched = false;
+            var selected = $scope.results.filter(function (item) {
+                return item.isSelected == true;
+            });
+            if(selected.length===1){
+                $scope.comparison = false;
+            }
+            console.log(selected);
+            
+        }
     //    var mymap = L.map('mapId').setView([0, 0], 1);
     //    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YlMbPiXpZfvSpnbcKkXL',{
     //        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
