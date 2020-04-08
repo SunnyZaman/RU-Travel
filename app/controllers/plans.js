@@ -3,6 +3,7 @@ app.controller('plans-controller', function ($scope, $http) {
     $scope.searchData = { continent: "", country: "", city: "", placeType: "", minPrice: null, maxPrice: null };
     $scope.searched = false;
     $scope.disableView = true;
+    $scope.showPlans = false;
     $scope.loadPlaces = function () {
         $http.get("server/places/dropdown.php")
             .then(function (response) {
@@ -81,9 +82,11 @@ app.controller('plans-controller', function ($scope, $http) {
 
         $scope.viewPlans = function () {
             $scope.searched = false;
+            $scope.showPlans = true;
             var selected = $scope.results.filter(function (item) {
                 return item.isSelected == true;
             });
+            $scope.selected = selected;
             $http({
                 method: "POST",
                 url: "server/places/reviews/fetch.php",
@@ -97,6 +100,9 @@ app.controller('plans-controller', function ($scope, $http) {
                 });
             if(selected.length===1){
                 $scope.comparison = false;
+            }
+            else{
+                $scope.comparison = true;
             }
             console.log(selected);
             
