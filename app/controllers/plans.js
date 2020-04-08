@@ -1,9 +1,11 @@
 var app = angular.module('app');
 app.controller('plans-controller', function ($scope, $http) {
+    $scope.searchData = {continent:"",country:"",city:"", placeType:"", minPrice:null,maxPrice:null};
+    $scope.searched = false;
     $scope.loadPlaces = function(){  
-        $http.get("server/places/fetch.php")
+        $http.get("server/places/dropdown.php")
         .then(function (response) {
-            console.log("Response: ", response);
+            console.log("Response: ", response.data);
             var places = response.data;
             var continents = [], countries = [], cities= [], placeTypes = [];
             places.forEach(place=>{
@@ -26,13 +28,30 @@ app.controller('plans-controller', function ($scope, $http) {
    }
    $scope.search = function () {
     console.log($scope.searchData);
+    $http({
+        method: "POST",
+        url: "server/places/search.php",
+        data: $scope.searchData
+    })
+    .then(function (response) {
+        console.log("Response: ", response.data);
+        $scope.searched = true;
+        $scope.results = [];
+        response.data.forEach(data=>{
+            console.log(data);
+            $scope.results.push(Object.assign(data, {isSelected: false}));
+        })
+        
+    }, function (error) {
+        console.error(error);
+    }); 
    } 
 
 
 
-   var mymap = L.map('mapId').setView([0, 0], 1);
-   L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YlMbPiXpZfvSpnbcKkXL',{
-       attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-   }).addTo(mymap)
+//    var mymap = L.map('mapId').setView([0, 0], 1);
+//    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YlMbPiXpZfvSpnbcKkXL',{
+//        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+//    }).addTo(mymap)
 
 })

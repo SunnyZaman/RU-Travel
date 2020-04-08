@@ -40,7 +40,7 @@
         ON DELETE CASCADE
         ON UPDATE CASCADE
         )";
-       
+    //    SELECT * FROM RUTravelPlaces INNER JOIN RUTravelAttractions USING (Attraction) WHERE Country ='India';
     if ($conn->query($sql) === FALSE){
         echo "Error creating table: " . $conn->error;
     }
