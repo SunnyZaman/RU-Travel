@@ -84,6 +84,17 @@ app.controller('plans-controller', function ($scope, $http) {
             var selected = $scope.results.filter(function (item) {
                 return item.isSelected == true;
             });
+            $http({
+                method: "POST",
+                url: "server/places/reviews/fetch.php",
+                data: { first:selected[0], second: selected[1]}
+            })
+                .then(function (response) {
+                    console.log("Response: ", response.data);
+    
+                }, function (error) {
+                    console.error(error);
+                });
             if(selected.length===1){
                 $scope.comparison = false;
             }
