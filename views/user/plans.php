@@ -59,7 +59,11 @@ if($_SESSION['isAdmin']==='0') : ?>
     </form>
 <section ng-if="searched">
 <div ng-switch="results.length>0">
-    <table ng-switch-when="true" class="table table-striped">
+<div ng-switch-when="true">
+<h1 class="table-title"> Search Results</h1>
+<p class="font-weight-light font-italic float-left">Select one or two places then click the view plans button</p>
+<button type="button" class="btn btn-info float-right">View Plans</button>
+    <table class="table table-striped">
     <tr>
         <th>Selected</th>
         <th>Attraction</th>
@@ -70,7 +74,7 @@ if($_SESSION['isAdmin']==='0') : ?>
         <th>Price</th>
     </tr>
     <tr ng-repeat="(key, value) in results">
-        <td><input type="checkbox" ng-model="value.isSelected"></td>
+        <td><input type="checkbox" ng-model="value.isSelected" ng-disabled="value.disabled" ng-checked="value.isSelected"></td>
         <td>{{ value.Attraction }}</td>
         <td>{{ value.City }}</td>
         <td>{{ value.Country }}</td>
@@ -79,6 +83,7 @@ if($_SESSION['isAdmin']==='0') : ?>
         <td>{{ value.Price | currency:'$' }}</td>
     </tr>
     </table>
+    </div>
     <p ng-switch-when="false" class="font-weight-bold">No Results</p>
     </div>
     </section>
