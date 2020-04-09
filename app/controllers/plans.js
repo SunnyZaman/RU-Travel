@@ -97,11 +97,11 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
             
         }
 
-        $scope.viewReview = function(attraction){
+        $scope.viewReview = function(selected){
             $http({
                 method: "POST",
                 url: "server/places/reviews/fetch.php",
-                data: { attraction:attraction}
+                data: { attraction:selected.Attraction}
             })
                 .then(function (response) {
                     console.log("Response: ", response.data);
@@ -110,16 +110,21 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
                     //     scope: $scope, //passed current scope to the modal
                     //     size: 'lg'
                     // });
+                    var data = {reviews:response.data, attraction:selected.Attraction,totalRating: selected.RatingTotal }
                     var modalInstance = $uibModal.open({
                         animation: true,
-                        templateUrl: 'views/user/modals/reviews.html',
+                        templateUrl: 'views/user/modals/reviews/reviews.html',
                         controller: 'review-controller',
                         backdrop: 'static',
-                        size: 'lg'
+                        size: 'lg',
+                        resolve: {
+                            data: function () {
+                              return data;
+                            }
+                          }
                       });
                     modalInstance.result.then(function(response){
                       console.log("Modal opened");
-                      
                     });
     
                 }, function (error) {

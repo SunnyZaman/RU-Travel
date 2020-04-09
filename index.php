@@ -24,9 +24,7 @@ session_start();
   <script src="app/routing/routes.js"></script>
   <script src="app/controllers/authenticate.js"></script>
   <script src="app/controllers/plans.js"></script>
-  
-  <style>
-  </style>
+  <script src="app/controllers/modals.js"></script>
  </head>
  <body ng-app="app">
      <?php

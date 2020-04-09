@@ -144,8 +144,8 @@ if($_SESSION['isAdmin']==='0') : ?>
     </tr>
     <tr>
         <th></th>
-        <td><button type="button" ng-click="viewReview(selected[0].Attraction)" class="btn btn-primary">View Reviews</button></td>
-        <td ng-if="comparison"><button type="button" class="btn btn-primary">View Reviews</button></td>
+        <td><button type="button" ng-click="viewReview(selected[0])" class="btn btn-primary">View Reviews</button></td>
+        <td ng-if="comparison"><button type="button" ng-click="viewReview(selected[1])" class="btn btn-primary">View Reviews</button></td>
     </tr>
         
     </table>
