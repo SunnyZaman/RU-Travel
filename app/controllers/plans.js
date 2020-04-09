@@ -19,14 +19,14 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
                 // console.log("Response: ", response.data);
                 var places = response.data;
                 var continents = [], countries = [], cities = [], placeTypes = [];
-                for(var i = 0; i<places.length; i++){
-                    console.log(places[i]);
+                    places.forEach(function(place) {
+                    console.log(place);
                     
-                    continents.push(places[i].Continent);
-                    countries.push(places[i].Country);
-                    cities.push(places[i].City);
-                    placeTypes.push(places[i].PlaceType)
-                }
+                    continents.push(place.Continent);
+                    countries.push(place.Country);
+                    cities.push(place.City);
+                    placeTypes.push(place.PlaceType)
+                });
                 $scope.continents = noDuplicates(continents);
                 $scope.countries = noDuplicates(countries);
                 $scope.cities = noDuplicates(cities);
@@ -145,7 +145,9 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
                           }
                       });
                     modalInstance.result.then(function(response){
-                      console.log("Modal opened");
+                        console.log("New total: ", selected.RatingTotal , response);
+                        
+                        selected.RatingTotal = response;
                     });
     
                 }, function (error) {

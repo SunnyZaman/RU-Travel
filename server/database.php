@@ -34,7 +34,7 @@
         AttractionDescription VARCHAR(250) NOT NULL,
         Price FLOAT NOT NULL,
         Coordinates VARCHAR(250) NOT NULL,
-        RatingTotal INT DEFAULT 0,
+        RatingTotal FLOAT DEFAULT 0,
         Attraction VARCHAR(250) NOT NULL,
         FOREIGN KEY (Attraction)
         REFERENCES RUTravelPlaces(Attraction)
