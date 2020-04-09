@@ -151,7 +151,13 @@ if($_SESSION['isAdmin']==='0') : ?>
     </table>
 </div>
     </section>
-    <!-- <div id="mapId"></div> -->
+    <section ng-if="comparison" ng-init="getDistance()">
+        <h2 class="map-title">Distance</h2>
+        <p>The distance between {{selected[0].Attraction}} and {{selected[1].Attraction}} is <span class="font-weight-bold">{{distance | number : 2}} km</span>.
+        <div class="p-b-20">
+            <div id="mapId"></div>
+        </div>
+    </section>
 
 </div>
 <?php endif; ?>

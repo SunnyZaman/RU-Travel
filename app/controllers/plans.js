@@ -154,9 +154,32 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
                     console.error(error);
                 });
         }
-    //    var mymap = L.map('mapId').setView([0, 0], 1);
-    //    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YlMbPiXpZfvSpnbcKkXL',{
-    //        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-    //    }).addTo(mymap)
+
+        $scope.getDistance = function(){
+            var lat1 = $scope.selected[0].Latitude;
+            var long1 = $scope.selected[0].Longitude;
+            var lat2 = $scope.selected[1].Latitude;
+            var long2 = $scope.selected[1].Longitude;
+                var p = 0.017453292519943295;    // Math.PI / 180
+                var c = Math.cos;
+                var a = 0.5 - c((lat2 - lat1) * p)/2 + 
+                        c(lat1 * p) * c(lat2 * p) * 
+                        (1 - c((long2 - long1) * p))/2;
+              
+                $scope.distance = 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+            var lat = ((Number(lat1)+Number(lat2))/2);
+            var long = ((Number(long1)+Number(long2))/2);
+            console.log(lat, long);
+            
+                   var mymap = L.map('mapId').setView([lat, long], 6);
+                   L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YlMbPiXpZfvSpnbcKkXL',{
+                       attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+                   }).addTo(mymap);
+                  var marker = L.marker([lat1, long1]).addTo(mymap);
+                   marker.bindPopup( $scope.selected[0].Attraction).openPopup();
+                   var marker2 = L.marker([lat2, long2]).addTo(mymap);
+                   marker2.bindPopup( $scope.selected[1].Attraction).openPopup();
+
+        }
 
 })

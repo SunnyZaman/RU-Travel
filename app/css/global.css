@@ -51,6 +51,9 @@
 .table-title{
     font-size: 1.5em;
 }
+.map-title{
+    font-size: 1.3em;
+}
 .plans-table{
     border-collapse: separate;
     empty-cells:hide;
@@ -80,6 +83,9 @@
 }
 .p-20{
     padding: 20px !important;
+}
+.p-b-20{
+    padding-bottom: 20px !important;
 }
 .checked {
     color: orange !important;
