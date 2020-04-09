@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('plans-controller', function ($scope, $http) {
+app.controller('plans-controller', function ($scope, $http, $uibModal) {
     $scope.searchData = { continent: "", country: "", city: "", placeType: "", minPrice: null, maxPrice: null };
     $scope.searched = false;
     $scope.disableView = true;
@@ -87,17 +87,6 @@ app.controller('plans-controller', function ($scope, $http) {
                 return item.isSelected == true;
             });
             $scope.selected = selected;
-            $http({
-                method: "POST",
-                url: "server/places/reviews/fetch.php",
-                data: { first:selected[0], second: selected[1]}
-            })
-                .then(function (response) {
-                    console.log("Response: ", response.data);
-    
-                }, function (error) {
-                    console.error(error);
-                });
             if(selected.length===1){
                 $scope.comparison = false;
             }
@@ -106,6 +95,36 @@ app.controller('plans-controller', function ($scope, $http) {
             }
             console.log(selected);
             
+        }
+
+        $scope.viewReview = function(attraction){
+            $http({
+                method: "POST",
+                url: "server/places/reviews/fetch.php",
+                data: { attraction:attraction}
+            })
+                .then(function (response) {
+                    console.log("Response: ", response.data);
+                    // var modalInstance = $uibModal.open({
+                    //     templateUrl: 'views/user/modals/reviews.html',
+                    //     scope: $scope, //passed current scope to the modal
+                    //     size: 'lg'
+                    // });
+                    var modalInstance = $uibModal.open({
+                        animation: true,
+                        templateUrl: 'views/user/modals/reviews.html',
+                        controller: 'review-controller',
+                        backdrop: 'static',
+                        size: 'lg'
+                      });
+                    modalInstance.result.then(function(response){
+                      console.log("Modal opened");
+                      
+                    });
+    
+                }, function (error) {
+                    console.error(error);
+                });
         }
     //    var mymap = L.map('mapId').setView([0, 0], 1);
     //    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YlMbPiXpZfvSpnbcKkXL',{

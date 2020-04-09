@@ -20,6 +20,7 @@ session_start();
   <link href="app/css/global.css" rel="stylesheet">
   <script src="app/lib/angular.min.js"></script>
   <script src="app/lib/angular-route.min.js"></script>
+  <script src="app/lib/ui-bootstrap.min.js"></script>
   <script src="app/routing/routes.js"></script>
   <script src="app/controllers/authenticate.js"></script>
   <script src="app/controllers/plans.js"></script>

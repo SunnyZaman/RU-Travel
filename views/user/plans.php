@@ -88,6 +88,9 @@ if($_SESSION['isAdmin']==='0') : ?>
     </div>
     </section>
     <section ng-if="!searched && showPlans">
+    <h1 class="table-title"> Search Results</h1>
+<button type="button"  class="btn btn-info float-right">Generate Invoice</button>
+    <div class="table-container">
     <table class="table table-striped text-center plans-table">
     <tr>
     <th></th>
@@ -139,8 +142,14 @@ if($_SESSION['isAdmin']==='0') : ?>
         <td>{{selected[0].RatingTotal}}/5</td>
         <td ng-if="comparison">{{selected[1].RatingTotal}}/5</td>
     </tr>
+    <tr>
+        <th></th>
+        <td><button type="button" ng-click="viewReview(selected[0].Attraction)" class="btn btn-primary">View Reviews</button></td>
+        <td ng-if="comparison"><button type="button" class="btn btn-primary">View Reviews</button></td>
+    </tr>
         
     </table>
+</div>
     </section>
     <!-- <div id="mapId"></div> -->
 
