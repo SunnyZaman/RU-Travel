@@ -7,7 +7,7 @@
             <div class="form-group col-xs-12 col-md-12">
             <div class="card">
                 <div class="p-20">
-            <span ng-repeat="n in getNumber(value.ReviewRating)" class="fa fa-star checked m-20"></span>
+            <span ng-repeat="n in [1,2,3,4,5] | limitTo:getNumber(value.ReviewRating)" class="fa fa-star checked m-20"></span>
         <p class="card-subtitle mb-2"> {{value.ReviewDate}} </p>
         <p class="card-subtitle mb-2"> {{value.ReviewerName}} - {{value.ReviewerEmail}} </p>
         <h4 class="card-subtitle mb-2"> {{value.ReviewTitle}}</h4>
@@ -18,6 +18,5 @@
         </div>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="ok()">OK</button>
-      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-secondary" ng-click="cancel()">Cancel</button>
   </div>

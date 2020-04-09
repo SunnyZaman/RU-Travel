@@ -50,7 +50,7 @@
         ReviewerName VARCHAR(250) NOT NULL,
         ReviewerEmail VARCHAR(250) NOT NULL,
         ReviewDescription VARCHAR(250) NOT NULL,
-        ReviewTitle FLOAT NOT NULL,
+        ReviewTitle VARCHAR(250) NOT NULL,
         ReviewDate VARCHAR(250) NOT NULL,
         ReviewRating INT NOT NULL,
         Attraction VARCHAR(250) NOT NULL,

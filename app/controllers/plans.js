@@ -4,28 +4,40 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
     $scope.searched = false;
     $scope.disableView = true;
     $scope.showPlans = false;
+     noDuplicates = function(a) {
+        var temp = {};
+        for (var i = 0; i < a.length; i++)
+            temp[a[i]] = true;
+        var r = [];
+        for (var k in temp)
+            r.push(k);
+        return r;
+    }
     $scope.loadPlaces = function () {
         $http.get("server/places/dropdown.php")
             .then(function (response) {
                 // console.log("Response: ", response.data);
                 var places = response.data;
                 var continents = [], countries = [], cities = [], placeTypes = [];
-                places.forEach(place => {
-                    continents.push(place.Continent);
-                    countries.push(place.Country);
-                    cities.push(place.City);
-                    placeTypes.push(place.PlaceType)
-                })
-                $scope.continents = [...new Set(continents)];
-                $scope.countries = [...new Set(countries)];
-                $scope.cities = [...new Set(cities)];
-                $scope.placeTypes = [...new Set(placeTypes)];
+                for(var i = 0; i<places.length; i++){
+                    console.log(places[i]);
+                    
+                    continents.push(places[i].Continent);
+                    countries.push(places[i].Country);
+                    cities.push(places[i].City);
+                    placeTypes.push(places[i].PlaceType)
+                }
+                $scope.continents = noDuplicates(continents);
+                $scope.countries = noDuplicates(countries);
+                $scope.cities = noDuplicates(cities);
+                $scope.placeTypes = noDuplicates(placeTypes);
             }, function (error) {
                 console.error(error);
             });
 
         $scope.changeCountry = function (selected) {
-            $scope.countries = $scope.continents.filter(continent => continent.Continent == selected);
+            
+            $scope.countries = $scope.continents.filter(function(continent) { return continent.Continent === selected; });
         }
     }
     $scope.search = function () {
@@ -39,10 +51,11 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
                 // console.log("Response: ", response.data);
                 $scope.searched = true;
                 $scope.results = [];
-                response.data.forEach(data => {
+                var data = response.data;
+                for(var i=0; i< data.length; i++){
                     // console.log(data);
-                    $scope.results.push(Object.assign(data, { isSelected: false }));
-                })
+                    $scope.results.push(Object.assign(data[i], { isSelected: false }));
+                }
 
             }, function (error) {
                 console.error(error);
@@ -62,19 +75,19 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
                     $scope.disableView = true;
                 }
                 if (selected.length >= 2) {
-                    $scope.results.forEach(item=>{
-                        if (item.isSelected === false) {
-                            item.disabled = true;
+                    for(var i = 0; i< $scope.results; i++){
+                        if ($scope.results[i].isSelected === false) {
+                            $scope.results[i].disabled = true;
                         }
-                    });
+                    }
                 }
                 else {
-                    $scope.results.forEach(item=>{
-                        item.disabled = false;
+                    for(var i = 0; i< $scope.results; i++){
+                        $scope.results[i].disabled = false;
                         if (selected.length !== 0) {
                         $scope.disableView = false;
                         }
-                    });
+                    }
                 }
             }
 

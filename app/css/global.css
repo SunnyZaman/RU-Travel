@@ -75,3 +75,12 @@
     filter: alpha(opacity=50);
     opacity: .5;
 }
+.m-20{
+    margin-bottom: 20px !important;
+}
+.p-20{
+    padding: 20px !important;
+}
+.checked {
+    color: orange !important;
+  }
