@@ -71,23 +71,31 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
                 var selected = value.filter(function (item) {
                     return item.isSelected == true;
                 });
+                console.log("selected items: ", selected);
+                
                 if (selected.length === 0) {
                     $scope.disableView = true;
                 }
                 if (selected.length >= 2) {
-                    for(var i = 0; i< $scope.results; i++){
-                        if ($scope.results[i].isSelected === false) {
-                            $scope.results[i].disabled = true;
-                        }
-                    }
+                    console.log("Greater than 2");
+                    console.log($scope.results);
+
+                        $scope.results.forEach(function(item) {
+                            console.log("Boom: ", item);
+                            
+                            if (item.isSelected === false) {
+                                item.disabled = true;
+                            }
+                            
+                        });
                 }
                 else {
-                    for(var i = 0; i< $scope.results; i++){
-                        $scope.results[i].disabled = false;
+                    $scope.results.forEach(function(item) {
+                        item.disabled = false;
                         if (selected.length !== 0) {
                         $scope.disableView = false;
                         }
-                    }
+                    })
                 }
             }
 

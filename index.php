@@ -10,6 +10,7 @@ session_start();
     <meta name="google" content="notranslate" />
     <meta http-equiv="Content-Language" content="en_US" /> 
   <title>RU Travel</title>
+  <script src="polyfill.min.js"></script>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link href="app/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
