@@ -1,8 +1,9 @@
 var app = angular.module('app');
-app.controller('plans-controller', function ($scope, $http) {
+app.controller('plans-controller', function ($scope, $http, $uibModal) {
     $scope.searchData = { continent: "", country: "", city: "", placeType: "", minPrice: null, maxPrice: null };
     $scope.searched = false;
     $scope.disableView = true;
+    $scope.showPlans = false;
     $scope.loadPlaces = function () {
         $http.get("server/places/dropdown.php")
             .then(function (response) {
@@ -81,14 +82,54 @@ app.controller('plans-controller', function ($scope, $http) {
 
         $scope.viewPlans = function () {
             $scope.searched = false;
+            $scope.showPlans = true;
             var selected = $scope.results.filter(function (item) {
                 return item.isSelected == true;
             });
+            $scope.selected = selected;
             if(selected.length===1){
                 $scope.comparison = false;
             }
+            else{
+                $scope.comparison = true;
+            }
             console.log(selected);
             
+        }
+
+        $scope.viewReview = function(selected){
+            $http({
+                method: "POST",
+                url: "server/places/reviews/fetch.php",
+                data: { attraction:selected.Attraction}
+            })
+                .then(function (response) {
+                    console.log("Response: ", response.data);
+                    // var modalInstance = $uibModal.open({
+                    //     templateUrl: 'views/user/modals/reviews.html',
+                    //     scope: $scope, //passed current scope to the modal
+                    //     size: 'lg'
+                    // });
+                    var data = {reviews:response.data, attraction:selected.Attraction,totalRating: selected.RatingTotal }
+                    var modalInstance = $uibModal.open({
+                        animation: true,
+                        templateUrl: 'views/user/modals/reviews/reviews.html',
+                        controller: 'review-controller',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            data: function () {
+                              return data;
+                            }
+                          }
+                      });
+                    modalInstance.result.then(function(response){
+                      console.log("Modal opened");
+                    });
+    
+                }, function (error) {
+                    console.error(error);
+                });
         }
     //    var mymap = L.map('mapId').setView([0, 0], 1);
     //    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YlMbPiXpZfvSpnbcKkXL',{

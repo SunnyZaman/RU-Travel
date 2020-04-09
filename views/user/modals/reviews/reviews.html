@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3 class="float-left">Reviews</h3>
+    <button type="button" ng-click="writeReview()" class="btn btn-dark float-right"><i class="fas fa-pencil-alt buttonIcon"></i>Write a Review</button>
+  </div>
+  <div class="modal-body">
+    <div class="form-row" ng-repeat="(key, value) in reviews">
+            <div class="form-group col-xs-12 col-md-12">
+            <div class="card">
+                <div class="p-20">
+            <span ng-repeat="n in getNumber(value.ReviewRating)" class="fa fa-star checked m-20"></span>
+        <p class="card-subtitle mb-2"> {{value.ReviewDate}} </p>
+        <p class="card-subtitle mb-2"> {{value.ReviewerName}} - {{value.ReviewerEmail}} </p>
+        <h4 class="card-subtitle mb-2"> {{value.ReviewTitle}}</h4>
+                <p>{{value.ReviewDescription}}</p>
+            </div>
+            </div>
+            </div>
+        </div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>

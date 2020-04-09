@@ -87,6 +87,70 @@ if($_SESSION['isAdmin']==='0') : ?>
     <p ng-switch-when="false" class="font-weight-bold">No Results</p>
     </div>
     </section>
+    <section ng-if="!searched && showPlans">
+    <h1 class="table-title"> Search Results</h1>
+<button type="button"  class="btn btn-info float-right">Generate Invoice</button>
+    <div class="table-container">
+    <table class="table table-striped text-center plans-table">
+    <tr>
+    <th></th>
+    <td><img ng-src="assets/images/{{selected[0].AttractionImage}}" width="350" height="300"/></td>
+    <td ng-if="comparison"><img ng-src="assets/images/{{selected[1].AttractionImage}}" width="350" height="300"/></td>
+    </tr>
+    <tr>
+        <th>Attraction</th>
+        <td>{{selected[0].Attraction}}</td>
+        <td ng-if="comparison">{{selected[1].Attraction}}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{selected[0].AttractionDescription}}</td>
+        <td ng-if="comparison">{{selected[1].AttractionDescription}}</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>{{selected[0].AttractionAddress}}</td>
+        <td ng-if="comparison">{{selected[1].AttractionAddress}}</td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td>{{selected[0].City}}</td>
+        <td ng-if="comparison">{{selected[1].City}}</td>
+    </tr>
+    <tr>
+        <th>Country</th>
+        <td>{{selected[0].Country}}</td>
+        <td ng-if="comparison">{{selected[1].Country}}</td>
+    </tr>
+    <tr>
+        <th>Continent</th>
+        <td>{{selected[0].Continent}}</td>
+        <td ng-if="comparison">{{selected[1].Continent}}</td>
+    </tr>
+    <tr>
+        <th>Place</th>
+        <td>{{selected[0].PlaceType}}</td>
+        <td ng-if="comparison">{{selected[1].PlaceType}}</td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>{{selected[0].Price | currency:'$'}}</td>
+        <td ng-if="comparison">{{selected[1].Price | currency:'$'}}</td>
+    </tr>
+    <tr>
+        <th>Rating</th>
+        <td>{{selected[0].RatingTotal}}/5</td>
+        <td ng-if="comparison">{{selected[1].RatingTotal}}/5</td>
+    </tr>
+    <tr>
+        <th></th>
+        <td><button type="button" ng-click="viewReview(selected[0])" class="btn btn-primary">View Reviews</button></td>
+        <td ng-if="comparison"><button type="button" ng-click="viewReview(selected[1])" class="btn btn-primary">View Reviews</button></td>
+    </tr>
+        
+    </table>
+</div>
+    </section>
     <!-- <div id="mapId"></div> -->
 
 </div>
