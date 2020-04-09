@@ -26,7 +26,13 @@ if(!empty($review_data['attraction']))
 {
  $attraction = $review_data['attraction'];
 }
+if(!empty($review_data['newRating']))
+{
+$newRating = $review_data['newRating'];
+}
  $query = "INSERT INTO RUTravelReviews(ReviewerName, ReviewerEmail, ReviewDescription, ReviewTitle, ReviewDate, ReviewRating, Attraction)VALUES('".$name."', '".$email."', '".$description."', '".$title."', '".$date."', ".$rating.", '".$attraction."');";
+ $conn->query($query);
+ $query = "UPDATE RUTravelAttractions SET RatingTotal=".$newRating." WHERE Attraction='".$attraction."'";
  $conn->query($query);
   $message = 'Review Created';
 $output = array(

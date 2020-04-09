@@ -139,8 +139,8 @@ if($_SESSION['isAdmin']==='0') : ?>
     </tr>
     <tr>
         <th>Rating</th>
-        <td>{{selected[0].RatingTotal}}/5</td>
-        <td ng-if="comparison">{{selected[1].RatingTotal}}/5</td>
+        <td>{{selected[0].RatingTotal | number : 2}}/5.00</td>
+        <td ng-if="comparison">{{selected[1].RatingTotal | number : 2}}/5.00</td>
     </tr>
     <tr>
         <th></th>

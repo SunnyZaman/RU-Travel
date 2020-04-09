@@ -8,8 +8,8 @@
             <div class="card">
                 <div class="p-20">
             <span ng-repeat="n in [1,2,3,4,5] | limitTo:getNumber(value.ReviewRating)" class="fa fa-star checked m-20"></span>
-        <p class="card-subtitle mb-2"> {{value.ReviewDate}} </p>
-        <p class="card-subtitle mb-2"> {{value.ReviewerName}} - {{value.ReviewerEmail}} </p>
+        <p class="card-subtitle font-weight-light font-italic mb-2"> {{value.ReviewDate}} </p>
+        <p class="card-subtitle font-weight-light mb-2"> {{value.ReviewerName}} - {{value.ReviewerEmail}} </p>
         <h4 class="card-subtitle mb-2"> {{value.ReviewTitle}}</h4>
                 <p>{{value.ReviewDescription}}</p>
             </div>
