@@ -90,3 +90,7 @@
 .checked {
     color: orange !important;
   }
+.active a{
+  color:#ca45fe !important;
+  font-weight:500 !important;
+}
