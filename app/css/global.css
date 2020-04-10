@@ -97,3 +97,9 @@
 .about-text{
     color:#6c83fe;
 }
+#nav-tab a{
+    color: #a900ff !important;
+}
+#nav-tab .active{
+    color: #495057 !important;
+}
