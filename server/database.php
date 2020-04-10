@@ -63,6 +63,22 @@
     if ($conn->query($sql) === FALSE){
         echo "Error creating table: " . $conn->error;
     }
+    $sql = "CREATE TABLE IF NOT EXISTS RUTravelInvoices(
+        Id INT PRIMARY KEY AUTO_INCREMENT,
+        Package VARCHAR(250) NOT NULL,
+        Destination VARCHAR(250) NOT NULL,
+        Quantity VARCHAR(250) NOT NULL,
+        Subtotal VARCHAR(250) NOT NULL,
+        Total VARCHAR(250) NOT NULL,
+        Email VARCHAR(250) NOT NULL,
+        FOREIGN KEY (Email)
+        REFERENCES RUTravelUsers(Email)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+        )";
+    if ($conn->query($sql) === FALSE){
+        echo "Error creating table: " . $conn->error;
+    }
     // $sql = "INSERT INTO RUTravelPlaces(Continent, Country, City, PlaceType, Attraction)
     // VALUES ('Asia', 'Malaysia', 'Gombak', 'History', 'Batu Caves');";
     // $sql .= "INSERT INTO RUTravelPlaces(Continent, Country, City, PlaceType, Attraction)

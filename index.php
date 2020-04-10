@@ -12,16 +12,17 @@ session_start();
   <title>RU Travel</title>
   <script src="app/lib/polyfill.min.js"></script>
   <link rel="icon" type="image/png" href="favicon.png" />
+  <script src="app/js/jquery.min.js"></script>
   <link href="app/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-  <script src="app/js/jquery.min.js"></script>
-  <script src="app/js/bootstrap.min.js"></script>
   <link href="app/css/global.css" rel="stylesheet">
   <script src="app/lib/angular.min.js"></script>
   <script src="app/lib/angular-route.min.js"></script>
   <script src="app/lib/ui-bootstrap.min.js"></script>
+  <link href="app/css/toastr.min.css" rel="stylesheet">
+  <script src="app/js/toastr.min.js"></script>
   <script src="app/routing/routes.js"></script>
   <script src="app/controllers/authenticate.js"></script>
   <script src="app/controllers/plans.js"></script>

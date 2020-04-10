@@ -74,7 +74,7 @@ app.controller('review-controller', function ($scope, $uibModalInstance, data, $
                $uibModalInstance.dismiss();
              } 
      })
-     app.controller('invoice-controller', function ($scope, $uibModalInstance, data){
+     app.controller('invoice-controller', function ($scope, $http,$uibModalInstance, data){
           console.log("Invoice: ", data);
         $scope.quantity = 1;
         var destinations = [];
@@ -101,6 +101,21 @@ app.controller('review-controller', function ($scope, $uibModalInstance, data, $
       return  price;
     }
         $scope.submitInvoice = function(){
+          var subtotal = document.getElementById("subtotal").innerText;
+          var total = document.getElementById("total").innerText;
+          console.log(subtotal, total);
+          var data = {package:$scope.package, destination:$scope.destination, quantity:$scope.quantity, subtotal:subtotal, total:total}
+          $http({
+            method: "POST",
+            url: "server/places/invoices/insert.php",
+            data: data
+        }).then(function (response) {
+          console.log("Invoice Created! ", response);
+            $uibModalInstance.close();
+
+        }, function (error) {
+            console.error(error);
+        });
 
         }
           $scope.ok = function(){
