@@ -89,7 +89,7 @@ if($_SESSION['isAdmin']==='0') : ?>
     </section>
     <section ng-if="!searched && showPlans">
     <h1 class="table-title"> Search Results</h1>
-<button type="button"  class="btn btn-info float-right">Generate Invoice</button>
+<button type="button" ng-click="generateInvoice()" class="btn btn-info float-right">Generate Invoice</button>
     <div class="table-container">
     <table class="table table-striped text-center plans-table">
     <tr>
@@ -151,7 +151,7 @@ if($_SESSION['isAdmin']==='0') : ?>
     </table>
 </div>
     </section>
-    <section ng-if="comparison" ng-init="getDistance()">
+    <section ng-if="comparison && !searched && showPlans" ng-init="getDistance()">
         <h2 class="map-title">Distance</h2>
         <p>The distance between {{selected[0].Attraction}} and {{selected[1].Attraction}} is <span class="font-weight-bold">{{distance | number : 2}} km</span>.
         <div class="p-b-20">
@@ -160,4 +160,5 @@ if($_SESSION['isAdmin']==='0') : ?>
     </section>
 
 </div>
+
 <?php endif; ?>

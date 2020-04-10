@@ -118,6 +118,45 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
 
     }
 
+    $scope.generateInvoice = function () {
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/user/modals/invoice.html',
+            controller: 'invoice-controller',
+            backdrop: 'static',
+            size: 'lg',
+            resolve: {
+                data: function () {
+                    return $scope.selected;
+                }
+            }
+        });
+        modalInstance.result.then(function (response) {
+            console.log("Show toast");
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr["success"]("Succefully placed order!")
+
+        }).catch(function (reason) {
+            console.log("Modal dismissed with reason: ", reason);
+        });
+    }
+
     $scope.viewReview = function (selected) {
         $http({
             method: "POST",

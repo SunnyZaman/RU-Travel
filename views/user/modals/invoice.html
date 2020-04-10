@@ -1,0 +1,75 @@
+<form method="post" ng-submit="submitInvoice()">
+    <div class="modal-header">
+        <h3>Invoice</h3>
+      </div>
+      <div class="modal-body">
+          <div class="form-row">
+              <div class="form-group col-xs-12 col-md-4">
+              <label for="package">Package:</label>
+                  <select  name="package" id="package" class="form-control" ng-model="package" required>
+                    <option value="">Select Package</option>
+                  <option value="Basic">Basic ($200)</option>
+                  <option value="Elite">Elite ($500)</option>
+                  </select>
+              </div>
+            <div class="form-group col-xs-12 col-md-4">
+            <label for="quantity">Quantity:</label>
+           <input type="number" min="1" name="quantity" ng-model="quantity"
+            class="form-control" required/>
+            </div>
+            <div class="form-group col-xs-12 col-md-4">
+                <label for="creditNumber">Credit Number:</label>
+               <input type="number" min="1" name="creditNumber" ng-model="creditNumber"
+                class="form-control" required/>
+                </div>
+        </div>  
+        <!-- Inovice table -->
+        <div class="table-responsive">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <td><strong>Package</strong></td>
+                        <td class="text-center"><strong>Destination</strong></td>
+                        <td class="text-center"><strong>Price</strong></td>
+                        <td class="text-center"><strong>Quantity</strong></td>
+                        <td class="text-right"><strong>Totals</strong></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="package">{{package}}</td>
+                        <td id="destination"class="text-center">{{destination}}</td>
+                        <td id="price" class="text-center">{{getPrice(package) | currency:'$'}}</td>
+                        <td id="quantity" class="text-center">{{quantity}}</td>
+                        <td id="totals" class="text-right">{{totals*quantity | currency:'$'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="thick-line"></td>
+                        <td class="thick-line"></td>
+                        <td class="thick-line"></td>
+                        <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                        <td id="subtotal" class="thick-line text-right">{{totals*quantity | currency:'$'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center"><strong>Tax(15%)</strong></td>
+                        <td id="tax" class="no-line text-right">{{totals*quantity *0.15 | currency:'$'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center"><strong>Total</strong></td>
+                        <td id="total" class="no-line text-right">{{totals*quantity+ totals*quantity *0.15| currency:'$'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Confirm Purchase</button>
+      <button class="btn btn-secondary" ng-click="cancel()">Cancel</button>
+    </div>
+    </form>

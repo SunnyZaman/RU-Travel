@@ -74,3 +74,54 @@ app.controller('review-controller', function ($scope, $uibModalInstance, data, $
                $uibModalInstance.dismiss();
              } 
      })
+     app.controller('invoice-controller', function ($scope, $http,$uibModalInstance, data){
+          console.log("Invoice: ", data);
+        $scope.quantity = 1;
+        var destinations = [];
+        var destinationPrice = 0;
+       data.forEach(function (value) {
+        destinations.push(value.Attraction);
+        destinationPrice+= Number(value.Price);
+    });
+    $scope.totals = destinationPrice;
+    $scope.destination = destinations.join(', ');
+    $scope.getPrice = function(package){
+      var price = destinationPrice;
+      switch (package) {
+        case "Basic":
+          price+=200
+          break;
+          case "Elite":
+            price+=500
+            break;
+        default:
+          break;
+      }
+      $scope.totals = price;
+      return  price;
+    }
+        $scope.submitInvoice = function(){
+          var subtotal = document.getElementById("subtotal").innerText;
+          var total = document.getElementById("total").innerText;
+          console.log(subtotal, total);
+          var data = {package:$scope.package, destination:$scope.destination, quantity:$scope.quantity, subtotal:subtotal, total:total}
+          $http({
+            method: "POST",
+            url: "server/places/invoices/insert.php",
+            data: data
+        }).then(function (response) {
+          console.log("Invoice Created! ", response);
+            $uibModalInstance.close();
+
+        }, function (error) {
+            console.error(error);
+        });
+
+        }
+          $scope.ok = function(){
+               $uibModalInstance.close("Ok");
+             }     
+             $scope.cancel = function(){
+               $uibModalInstance.dismiss();
+             }
+     })
