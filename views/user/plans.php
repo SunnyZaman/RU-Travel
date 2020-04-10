@@ -89,7 +89,7 @@ if($_SESSION['isAdmin']==='0') : ?>
     </section>
     <section ng-if="!searched && showPlans">
     <h1 class="table-title"> Search Results</h1>
-<button type="button" ng-click="generateInvoice()" class="btn btn-info float-right">Generate Invoice</button>
+<button type="button" ng-click="generateInvoice()" class="btn btn-danger float-right">Generate Invoice</button>
     <div class="table-container">
     <table class="table table-striped text-center plans-table">
     <tr>
