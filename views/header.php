@@ -16,8 +16,8 @@ session_start();
         <li class="nav-item" ng-class="{ active: isActive('/') || isActive('/home') || isActive('/plans')}">
           <a class="nav-link" href="#">Home</a>
         </li>
-        <li class="nav-item" ng-class="{ active: isActive('/')}">
-          <a class="nav-link" href="#">About</a>
+        <li class="nav-item" ng-class="{ active: isActive('/about')}">
+          <a class="nav-link" href="#!/about">About</a>
         </li>
         <li class="nav-item" ng-class="{ active: isActive('/orders')}">
           <a class="nav-link" href="#!/orders">Orders</a>

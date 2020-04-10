@@ -1,27 +1,17 @@
-<tr>
-    <th></th>
-    <td class="text-center"><img src="assets/images/{{selected[0].AttractionImage}}" width="200" height="200"/></td>
-    <td class="text-center"><img src="assets/images/{{selected[1].AttractionImage}}" width="200" height="200"/></td>
-
-</tr>
-<tr>
-    <th>Attraction</th>
-</tr>
-<tr>
-    <th>City</th>
-</tr>
-<tr>
-    <th>Country</th>
-</tr>
-<tr>
-    <th>Continent</th>
-</tr>
-<tr>
-    <th>Place</th>
-</tr>
-<tr>
-    <th>Price</th>
-</tr>
-<tr>
-    <th>Rating</th>
-</tr>
+<div class="container-fluid mt-4" ng-controller="about-controller" ng-init="loadOrders()">
+    <div class="form-row">
+        <div class="col-xs-12 col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5 class="card-title">Sunny Zaman</h5>
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="card-footer text-muted">
+                    {{$data[0]}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
