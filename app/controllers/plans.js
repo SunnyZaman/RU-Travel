@@ -150,7 +150,7 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
-            toastr["success"]("Succefully placed order!")
+            toastr["success"]("Succefully placed order!");
 
         }).catch(function (reason) {
             console.log("Modal dismissed with reason: ", reason);
