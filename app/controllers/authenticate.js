@@ -27,19 +27,31 @@ app.controller('auth-controller', function ($scope, $http) {
             data: $scope.registerData
         }).then(function (response) {
             console.log("Response: ", response);
-
-            $scope.alertMsg = true;
-            if (response.data.error != '') {
-                $scope.alertClass = 'alert-danger';
-                $scope.alertMessage = response.data.error;
-            }
-            else {
-                $scope.alertClass = 'alert-success';
-                $scope.alertMessage = response.data.message;
+            var toast = "error";
+            if (response.data.registered){
+                toast="success";
                 $scope.registerData = {};
                 $scope.authTitle = "Login";
                 $scope.login = true;
             }
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr[toast](response.data.message);
         }, function (error) {
             console.error(error);
         });

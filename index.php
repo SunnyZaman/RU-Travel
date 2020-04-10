@@ -36,10 +36,6 @@ session_start();
    if(!isset($_SESSION["Email"]))
    { ?>
  <div class="container-fluid mt-4" ng-controller="auth-controller">
-    <div class="alert {{alertClass}} alert-dismissible" ng-show="alertMsg">
-        <a href="#" class="close" ng-click="closeMsg()" aria-label="close">&times;</a>
-        {{alertMessage}}
-    </div>
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-6">
             <div class="card">
