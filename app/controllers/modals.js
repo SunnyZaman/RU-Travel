@@ -38,7 +38,6 @@ app.controller('review-controller', function ($scope, $uibModalInstance, data, $
                     .then(function (response) {
                         console.log("Response: ", response.data);
                         $scope.reviews = response.data;
-        
                     }, function (error) {
                         console.error(error);
                     });
