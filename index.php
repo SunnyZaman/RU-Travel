@@ -18,6 +18,7 @@ session_start();
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <link href="app/css/global.css" rel="stylesheet">
+  <script src="app/js/bootstrap.min.js"></script>
   <script src="app/lib/angular.min.js"></script>
   <script src="app/lib/angular-route.min.js"></script>
   <script src="app/lib/ui-bootstrap.min.js"></script>
@@ -27,6 +28,8 @@ session_start();
   <script src="app/controllers/authenticate.js"></script>
   <script src="app/controllers/plans.js"></script>
   <script src="app/controllers/modals.js"></script>
+  <script src="app/controllers/orders.js"></script>
+
  </head>
  <body ng-app="app">
      <?php
