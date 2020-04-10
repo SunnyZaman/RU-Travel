@@ -10,7 +10,18 @@ app.config(['$routeProvider', function($routeProvider){
     .when('/plans',{
         templateUrl: 'views/user/plans.php'
     })
+    .when('/orders',{
+        templateUrl: 'views/user/orders.php'
+    })
     .otherwise({
         redirectTo:'/home'
     })
 }]);
+app.controller('header-controller', function ($scope, $location) {
+    $scope.isActive = function (viewLocation) { 
+        console.log(viewLocation);
+        console.log($location.path());
+        
+        return viewLocation === $location.path();
+    };
+})

@@ -2,7 +2,7 @@
 include('../connection.php');
 session_start();
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" ng-controller="header-controller">
     <a class="navbar-brand" href="#">
         <img src="favicon.png" width="30" height="35" class="d-inline-block align-top" alt="">
         <span class="underline">RU Travel</span>
@@ -13,14 +13,14 @@ session_start();
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
       <ul class="navbar-nav">
       <?php if($_SESSION['isAdmin']==='0') : ?>
-        <li class="nav-item active">
+        <li class="nav-item" ng-class="{ active: isActive('/') || isActive('/home') || isActive('/plans')}">
           <a class="nav-link" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+        <li class="nav-item" ng-class="{ active: isActive('/')}">
+          <a class="nav-link" href="#">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+        <li class="nav-item" ng-class="{ active: isActive('/orders')}">
+          <a class="nav-link" href="#!/orders">Orders</a>
         </li>
         <?php endif; ?>
         <li class="nav-item dropdown">
