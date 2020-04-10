@@ -30,6 +30,8 @@ session_start();
   <script src="app/controllers/modals.js"></script>
   <script src="app/controllers/orders.js"></script>
   <script src="app/controllers/about.js"></script>
+  <script src="app/controllers/admin.js"></script>
+
  </head>
  <body ng-app="app">
      <?php

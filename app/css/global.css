@@ -48,7 +48,7 @@
 }
 #mapId { height: 400px; }
 
-.table-title{
+.table-title, .admin-title{
     font-size: 1.5em;
 }
 .map-title{
