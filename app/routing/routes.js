@@ -13,6 +13,9 @@ app.config(['$routeProvider', function($routeProvider){
     .when('/orders',{
         templateUrl: 'views/user/orders.php'
     })
+    .when('/about',{
+        templateUrl: 'views/user/about.php'
+    })
     .otherwise({
         redirectTo:'/home'
     })
