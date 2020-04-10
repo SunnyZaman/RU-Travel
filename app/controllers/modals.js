@@ -74,3 +74,39 @@ app.controller('review-controller', function ($scope, $uibModalInstance, data, $
                $uibModalInstance.dismiss();
              } 
      })
+     app.controller('invoice-controller', function ($scope, $uibModalInstance, data){
+          console.log("Invoice: ", data);
+        $scope.quantity = 1;
+        var destinations = [];
+        var destinationPrice = 0;
+       data.forEach(function (value) {
+        destinations.push(value.Attraction);
+        destinationPrice+= Number(value.Price);
+    });
+    $scope.totals = destinationPrice;
+    $scope.destination = destinations.join(', ');
+    $scope.getPrice = function(package){
+      var price = destinationPrice;
+      switch (package) {
+        case "Basic":
+          price+=200
+          break;
+          case "Elite":
+            price+=500
+            break;
+        default:
+          break;
+      }
+      $scope.totals = price;
+      return  price;
+    }
+        $scope.submitInvoice = function(){
+
+        }
+          $scope.ok = function(){
+               $uibModalInstance.close("Ok");
+             }     
+             $scope.cancel = function(){
+               $uibModalInstance.dismiss();
+             }
+     })

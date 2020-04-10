@@ -118,6 +118,25 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
 
     }
 
+    $scope.generateInvoice = function(){
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/user/modals/invoice.html',
+            controller: 'invoice-controller',
+            backdrop: 'static',
+            size: 'lg',
+            resolve: {
+                data: function () {
+                    return $scope.selected;
+                }
+            }
+        });
+        modalInstance.result.then(function (response) {
+        }).catch(function(reason) {
+            console.log("Modal dismissed with reasonL ", reason);
+        });
+    }
+
     $scope.viewReview = function (selected) {
         $http({
             method: "POST",
