@@ -20,16 +20,14 @@ if($_SESSION['isAdmin']==='1') : ?>
   </div>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane" ng-class="{active: isActive('users') || isActive('')}" id="users" role="tabpanel" aria-labelledby="users-tab">
-  <div  ng-if="isActive('users') || isActive('')">
     <div ng-include="'views/admin/tables/users.html'"></div>
-</div>
   </div>
   <div class="tab-pane" ng-class="{ active: isActive('places')}" id="places" role="tabpanel" aria-labelledby="places-tab">
-  <div ng-if="isActive('places')">
     <div ng-include="'views/admin/tables/places.html'"></div>
-</div>
   </div>
-  <div class="tab-pane" ng-class="{ active: isActive('attractions')}" id="attractions" role="tabpanel" aria-labelledby="attractions-tab">..attractions.</div>
+  <div class="tab-pane" ng-class="{ active: isActive('attractions')}" id="attractions" role="tabpanel" aria-labelledby="attractions-tab">
+  <div ng-include="'views/admin/tables/attractions.html'"></div>
+  </div>
   <div class="tab-pane" ng-class="{ active: isActive('reviews')}" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">..reviews.</div>
   <div class="tab-pane" ng-class="{ active: isActive('orders')}" id="orders" role="tabpanel" aria-labelledby="orders-tab">..orders.</div>
 
