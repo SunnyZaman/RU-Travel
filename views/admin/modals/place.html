@@ -1,0 +1,33 @@
+<form method="post" ng-submit="submitPlace()">
+    <div class="modal-header">
+        <h3>{{action}} Place</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-md-6">
+                <label for="continent">Continent:</label>
+                <input type="text" name="continent" ng-model="placeData.continent" class="form-control" required />
+            </div>
+            <div class="form-group col-xs-12 col-md-6">
+                <label for="country">Country:</label>
+                <input type="text" name="country" ng-model="placeData.country" class="form-control" required />
+            </div>
+        <div class="form-group col-xs-12 col-md-6">
+            <label for="city">City:</label>
+            <input type="text" name="city" ng-model="placeData.city" class="form-control" required />
+        </div>
+        <div class="form-group col-xs-12 col-md-6">
+            <label for="placeType">Place Type:</label>
+            <input type="text" name="placeType" ng-model="placeData.placeType" class="form-control" required />
+        </div>
+        <div class="form-group col-xs-12 col-md-6">
+            <label for="attraction">Attraction:</label>
+            <input type="text" name="attraction" ng-model="placeData.attraction" class="form-control" required />
+        </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">{{submitType}} Place</button>
+        <button type="button" class="btn btn-secondary" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

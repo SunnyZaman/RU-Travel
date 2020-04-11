@@ -48,7 +48,7 @@
 }
 #mapId { height: 400px; }
 
-.table-title{
+.table-title, .admin-title{
     font-size: 1.5em;
 }
 .map-title{
@@ -87,6 +87,9 @@
 .p-b-20{
     padding-bottom: 20px !important;
 }
+.m-b-5{
+    margin-bottom: 5px !important;
+}
 .checked {
     color: orange !important;
   }
@@ -96,4 +99,30 @@
 }
 .about-text{
     color:#6c83fe;
+}
+#nav-tab a{
+    color: #a900ff !important;
+}
+#nav-tab .active{
+    color: #495057 !important;
+}
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+.delete{
+    cursor: pointer;
+    color:#8a1104;
+}
+.edit{
+    cursor: pointer;
+    color:#093f9c;
+}
+.delete:hover, .edit:hover{
+    color:#363535;
+    transform: scale(1.5);
+}
+.dropdown-toggle{
+    cursor: pointer;
 }

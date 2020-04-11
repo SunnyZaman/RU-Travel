@@ -20,11 +20,27 @@ app.config(['$routeProvider', function($routeProvider){
         redirectTo:'/home'
     })
 }]);
+app.controller('app-controller', function($rootScope){
+    $rootScope.toastOptions = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "400",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+})
 app.controller('header-controller', function ($scope, $location) {
     $scope.isActive = function (viewLocation) { 
-        console.log(viewLocation);
-        console.log($location.path());
-        
         return viewLocation === $location.path();
     };
 })

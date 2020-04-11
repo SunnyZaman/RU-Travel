@@ -4,7 +4,6 @@ app.controller('orders-controller', function ($scope, $http) {
         $scope.orders =[];
         $http.get("server/places/invoices/fetch.php")
             .then(function (response) {
-                console.log("Response: ", response.data);
                 if(response.data!=="null"){
                 $scope.orders = response.data;
                 }

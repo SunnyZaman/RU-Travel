@@ -2,7 +2,7 @@
 include('../connection.php');
 session_start();
 $login_data = json_decode(file_get_contents("php://input"),true);
-
+$logged_in = false;
 $validation_error = '';
 
 if(empty($login_data['email']))
@@ -38,6 +38,7 @@ if(empty($error))
                $_SESSION["FirstName"] = $row["FirstName"];
                $_SESSION["LastName"] = $row["LastName"];
                $_SESSION["isAdmin"]  = $row["isAdmin"];
+               $logged_in = true;
         }
     else
     {
@@ -56,6 +57,7 @@ else
 }
 
 $output = array(
+'loggedIn'=> $logged_in,
  'error' => $validation_error
 );
 
