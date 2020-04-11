@@ -50,7 +50,7 @@
         Id INT PRIMARY KEY AUTO_INCREMENT,
         ReviewerName VARCHAR(250) NOT NULL,
         ReviewerEmail VARCHAR(250) NOT NULL,
-        ReviewDescription VARCHAR(250) NOT NULL,
+        ReviewDescription TEXT NOT NULL,
         ReviewTitle VARCHAR(250) NOT NULL,
         ReviewDate VARCHAR(250) NOT NULL,
         ReviewRating INT NOT NULL,
