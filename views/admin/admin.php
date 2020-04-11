@@ -28,7 +28,9 @@ if($_SESSION['isAdmin']==='1') : ?>
   <div class="tab-pane" ng-class="{ active: isActive('attractions')}" id="attractions" role="tabpanel" aria-labelledby="attractions-tab">
   <div ng-include="'views/admin/tables/attractions.html'"></div>
   </div>
-  <div class="tab-pane" ng-class="{ active: isActive('reviews')}" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">..reviews.</div>
+  <div class="tab-pane" ng-class="{ active: isActive('reviews')}" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+  <div ng-include="'views/admin/tables/reviews.html'"></div>
+  </div>
   <div class="tab-pane" ng-class="{ active: isActive('orders')}" id="orders" role="tabpanel" aria-labelledby="orders-tab">..orders.</div>
 
 </div>
