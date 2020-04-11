@@ -113,7 +113,7 @@ app.controller('admin-places-controller', function ($scope, $http, $uibModal, $r
         });
         modalInstance.result.then(function (response) {
             if (response) {
-                console.log("reloading users...");
+                console.log("reloading places...");
                 $scope.getPlaces();
             }
 
@@ -140,6 +140,78 @@ app.controller('admin-places-controller', function ($scope, $http, $uibModal, $r
                 toastr[toast](response.data.message);
                 if (response.data.deleted) {
                     $scope.getPlaces();
+                }
+            }, function (error) {
+                console.error(error);
+            });
+        }
+    }
+})
+
+// Attractions
+app.controller('admin-attractions-controller', function ($scope, $http, $uibModal, $rootScope) {
+    $scope.loadAttractions = function () {
+        console.log("Loading attractions...");
+        $scope.getAttractions();
+    }
+    $scope.getAttractions = function () {
+        $http({
+            method: "POST",
+            url: "server/admin/fetch/attractions.php"
+        })
+            .then(function (response) {
+                console.log("Response: ", response.data);
+                $scope.attractions = response.data;
+
+            }, function (error) {
+                console.error(error);
+            });
+    }
+    $scope.openAttractionModal = function (action, user) {
+        var data = null;
+        if (action === 'edit') {
+            data = user;
+        }
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/admin/modals/attraction.html',
+            controller: 'attraction-modal-controller',
+            backdrop: 'static',
+            size: 'lg',
+            resolve: {
+                data: function () {
+                    return data;
+                }
+            }
+        });
+        modalInstance.result.then(function (response) {
+            if (response) {
+                console.log("reloading attractions...");
+                $scope.getAttractions();
+            }
+        }).catch(function (reason) {
+            console.log("Modal dismissed with reason: ", reason);
+        });
+    }
+    $scope.deleteAttraction = function (id) {
+
+        if (confirm("Are you sure you want to remove this Attraction?")) {
+            var data = { table: "RUTravelAttractions", id: id, value: "Attraction" };
+            $http({
+                method: "POST",
+                url: "server/admin/delete.php",
+                data: data
+            }).then(function (response) {
+                console.log(response);
+
+                var toast = "success";
+                if (!response.data.deleted) {
+                    toast = "error";
+                }
+                toastr.options = $rootScope.toastOptions;
+                toastr[toast](response.data.message);
+                if (response.data.deleted) {
+                    $scope.getAttractions();
                 }
             }, function (error) {
                 console.error(error);

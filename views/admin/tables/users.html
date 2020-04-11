@@ -3,6 +3,7 @@
         <i class="fas fa-plus-circle buttonIcon"></i>Add User</button>
     <div ng-switch="users.length>0">
         <div ng-switch-when="true" >
+            <div class="table-container">
             <table class="table table-striped">
             <tr>
                 <th>First Name</th>
@@ -24,6 +25,7 @@
 
             </tr>
             </table>
+            </div>
             </div>
             <p ng-switch-when="false" class="font-weight-bold">No Users</p>
             </div>

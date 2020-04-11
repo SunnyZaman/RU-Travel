@@ -6,6 +6,7 @@ if($_SESSION['isAdmin']==='0') : ?>
    <div ng-switch="orders.length>0">
 <div ng-switch-when="true" >
 <h1 class="table-title">Order History</h1>
+<div class="table-container">
     <table class="table table-striped">
     <tr>
         <th>Package</th>
@@ -22,6 +23,7 @@ if($_SESSION['isAdmin']==='0') : ?>
         <td>{{ value.Total }}</td>
     </tr>
     </table>
+</div>
     </div>
     <p ng-switch-when="false" class="font-weight-bold">No Orders</p>
     </div>
