@@ -1,0 +1,30 @@
+<div class="container-fluid mt-4" ng-controller="admin-users-controller" ng-init="loadUsers()">
+    <button type="button" ng-click="openUserModal('add','')" ng-disabled="disableView" class="btn btn-success float-right">
+        <i class="fas fa-plus-circle buttonIcon"></i>Add User</button>
+    <div ng-switch="users.length>0">
+        <div ng-switch-when="true" >
+            <table class="table table-striped">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat="value in users">
+                <td>{{ value.FirstName }}</td>
+                <td>{{ value.LastName }}</td>
+                <td>{{ value.Email }}</td>
+                <td>{{ value.Telephone }}</td>
+                <td>{{ value.UserAddress }}</td>
+                <td><i class="fas fa-edit edit" ng-click="openUserModal('edit', value)"></i>
+                     <div class="divider"></div>
+                    <i class="fas fa-trash-alt delete" ng-click="deleteUser(value.Id)"></i></td>
+
+            </tr>
+            </table>
+            </div>
+            <p ng-switch-when="false" class="font-weight-bold">No Users</p>
+            </div>
+</div>

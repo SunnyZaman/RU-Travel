@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('plans-controller', function ($scope, $http, $uibModal) {
+app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScope) {
     $scope.searchData = { continent: "", country: "", city: "", placeType: "", minPrice: null, maxPrice: null };
     $scope.searched = false;
     $scope.disableView = true;
@@ -133,23 +133,7 @@ app.controller('plans-controller', function ($scope, $http, $uibModal) {
         });
         modalInstance.result.then(function (response) {
             console.log("Show toast");
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-center",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "400",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
+            toastr.options = $rootScope.toastOptions;
             toastr["success"]("Succefully placed order!");
 
         }).catch(function (reason) {
