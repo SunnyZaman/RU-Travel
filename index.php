@@ -16,7 +16,7 @@ session_start();
   <link href="app/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <link href="app/css/global.css" rel="stylesheet">
   <script src="app/js/bootstrap.min.js"></script>
   <script src="app/lib/angular.min.js"></script>
@@ -139,6 +139,5 @@ session_start();
    <?php
    }
    ?>
-
  </body>
 </html>
