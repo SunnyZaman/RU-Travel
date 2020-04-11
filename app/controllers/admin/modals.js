@@ -207,3 +207,73 @@ app.controller('attraction-modal-controller', function ($scope, $uibModalInstanc
         }
     }
 })
+// Reviews
+app.controller('review-modal-controller', function ($scope, $uibModalInstance, data, $http, $rootScope) {
+    if (data !== null) {
+        $scope.action = "Edit";
+        $scope.submitType = "Save";
+        $scope.reviewData = {
+            name: data.ReviewerName,
+            email: data.ReviewerEmail,
+            description: data.ReviewDescription,
+            title: data.ReviewTitle,
+            date: data.ReviewDate,
+            rating: Number(data.ReviewRating),
+            attraction: data.Attraction,
+            id: data.Id
+        }
+    }
+    else {
+        $scope.action = "Add";
+        $scope.submitType = "Add";
+    }
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss();
+    }
+    $scope.submitReview = function () {
+        switch ($scope.action) {
+            case "Edit":
+                $http({
+                    method: "POST",
+                    url: "server/admin/update/review.php",
+                    data: $scope.reviewData
+                }).then(function (response) {
+                    console.log("Response: ", response);
+                    var toast = "success";
+                    if (!response.data.updated) {
+                        toast = "error";
+                    }
+                    toastr.options = $rootScope.toastOptions;
+                    toastr[toast](response.data.message);
+                    if (response.data.updated) {
+                        $uibModalInstance.close(response.data.updated);
+                    }
+                }, function (error) {
+                    console.error(error);
+                });
+                break;
+            case "Add":
+                $http({
+                    method: "POST",
+                    url: "server/admin/insert/review.php",
+                    data: $scope.reviewData
+                }).then(function (response) {
+                    console.log("Response: ", response);
+                    var toast = "success";
+                    if (!response.data.inserted) {
+                        toast = "error";
+                    }
+                    toastr.options = $rootScope.toastOptions;
+                    toastr[toast](response.data.message);
+                    if (response.data.inserted) {
+                        $uibModalInstance.close(response.data.inserted);
+                    }
+                }, function (error) {
+                    console.error(error);
+                });
+                break;
+            default:
+                break;
+        }
+    }
+})
