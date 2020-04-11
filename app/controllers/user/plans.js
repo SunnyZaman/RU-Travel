@@ -16,12 +16,9 @@ app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScop
     $scope.loadPlaces = function () {
         $http.get("server/places/dropdown.php")
             .then(function (response) {
-                // console.log("Response: ", response.data);
                 var places = response.data;
                 var continents = [], countries = [], cities = [], placeTypes = [];
                 places.forEach(function (place) {
-                    console.log(place);
-
                     continents.push(place.Continent);
                     countries.push(place.Country);
                     cities.push(place.City);
@@ -41,19 +38,16 @@ app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScop
         }
     }
     $scope.search = function () {
-        console.log($scope.searchData);
         $http({
             method: "POST",
             url: "server/places/search.php",
             data: $scope.searchData
         })
             .then(function (response) {
-                // console.log("Response: ", response.data);
                 $scope.searched = true;
                 $scope.results = [];
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
-                    // console.log(data);
                     $scope.results.push(Object.assign(data[i], { isSelected: false }));
                 }
 
@@ -71,18 +65,12 @@ app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScop
                 var selected = value.filter(function (item) {
                     return item.isSelected == true;
                 });
-                console.log("selected items: ", selected);
 
                 if (selected.length === 0) {
                     $scope.disableView = true;
                 }
                 if (selected.length >= 2) {
-                    console.log("Greater than 2");
-                    console.log($scope.results);
-
                     $scope.results.forEach(function (item) {
-                        console.log("Boom: ", item);
-
                         if (item.isSelected === false) {
                             item.disabled = true;
                         }
@@ -114,7 +102,6 @@ app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScop
         else {
             $scope.comparison = true;
         }
-        console.log(selected);
 
     }
 
@@ -132,7 +119,6 @@ app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScop
             }
         });
         modalInstance.result.then(function (response) {
-            console.log("Show toast");
             toastr.options = $rootScope.toastOptions;
             toastr["success"]("Succefully placed order!");
 
@@ -148,12 +134,6 @@ app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScop
             data: { attraction: selected.Attraction }
         })
             .then(function (response) {
-                console.log("Response: ", response.data);
-                // var modalInstance = $uibModal.open({
-                //     templateUrl: 'views/user/modals/reviews.html',
-                //     scope: $scope, //passed current scope to the modal
-                //     size: 'lg'
-                // });
                 var data = { reviews: response.data, attraction: selected.Attraction, totalRating: selected.RatingTotal }
                 var modalInstance = $uibModal.open({
                     animation: true,
@@ -168,8 +148,6 @@ app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScop
                     }
                 });
                 modalInstance.result.then(function (response) {
-                    console.log("New total: ", selected.RatingTotal, response);
-
                     selected.RatingTotal = response;
                 });
 
@@ -191,8 +169,6 @@ app.controller('plans-controller', function ($scope, $http, $uibModal, $rootScop
         $scope.distance = 12742 * Math.asin(Math.sqrt(a));
         var lat = ((Number(lat1) + Number(lat2)) / 2);
         var long = ((Number(long1) + Number(long2)) / 2);
-        console.log(lat, long);
-
         var mymap = L.map('mapId').setView([lat, long], 6);
         L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YlMbPiXpZfvSpnbcKkXL', {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
