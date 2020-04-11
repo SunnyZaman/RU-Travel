@@ -1,0 +1,30 @@
+<div class="container-fluid mt-4" ng-controller="admin-places-controller" ng-init="loadPlaces()">
+    <button type="button" ng-click="openPlaceModal('add','')" class="btn btn-success float-right m-b-5">
+        <i class="fas fa-plus-circle buttonIcon"></i>Add Place</button>
+    <div ng-switch="places.length>0">
+        <div ng-switch-when="true" >
+            <table class="table table-striped">
+            <tr>
+                <th>Continent</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Place Type</th>
+                <th>Attraction</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat="value in places">
+                <td>{{ value.Continent }}</td>
+                <td>{{ value.Country }}</td>
+                <td>{{ value.City }}</td>
+                <td>{{ value.PlaceType }}</td>
+                <td>{{ value.Attraction }}</td>
+                <td><i class="fas fa-edit edit" ng-click="openPlaceModal('edit', value)"></i>
+                     <div class="divider"></div>
+                    <i class="fas fa-trash-alt delete" ng-click="deletePlace(value.Id)"></i></td>
+
+            </tr>
+            </table>
+            </div>
+            <p ng-switch-when="false" class="font-weight-bold">No Places</p>
+            </div>
+</div>
