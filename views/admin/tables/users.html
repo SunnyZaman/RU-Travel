@@ -20,7 +20,7 @@
                 <td>{{ value.UserAddress }}</td>
                 <td><i class="fas fa-edit edit" ng-click="openUserModal('edit', value)"></i>
                      <div class="divider"></div>
-                    <i class="fas fa-trash-alt delete"></i></td>
+                    <i class="fas fa-trash-alt delete" ng-click="deleteUser(value.Id)"></i></td>
 
             </tr>
             </table>

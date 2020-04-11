@@ -29,12 +29,12 @@ app.controller('user-modal-controller', function ($scope, $uibModalInstance, dat
                 }).then(function (response) {
                     console.log("Response: ", response);
                     var toast = "success";
-                    if (!response.data.updated){
-                        toast="error";
+                    if (!response.data.updated) {
+                        toast = "error";
                     }
                     toastr.options = $rootScope.toastOptions;
                     toastr[toast](response.data.message);
-                    if (response.data.updated){
+                    if (response.data.updated) {
                         $uibModalInstance.close(response.data.updated);
                     }
                 }, function (error) {
@@ -49,12 +49,12 @@ app.controller('user-modal-controller', function ($scope, $uibModalInstance, dat
                 }).then(function (response) {
                     console.log("Response: ", response);
                     var toast = "success";
-                    if (!response.data.registered){
-                        toast="error";
+                    if (!response.data.registered) {
+                        toast = "error";
                     }
                     toastr.options = $rootScope.toastOptions;
                     toastr[toast](response.data.message);
-                    if (response.data.registered){
+                    if (response.data.registered) {
                         $uibModalInstance.close(response.data.registered);
                     }
                 }, function (error) {
