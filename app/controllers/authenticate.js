@@ -49,10 +49,9 @@ app.controller('auth-controller', function ($scope, $http, $rootScope) {
             data: $scope.loginData
         }).then(function (response) {
             console.log("Response: ", response);
-            if (response.data.error != '') {
-                $scope.alertMsg = true;
-                $scope.alertClass = 'alert-danger';
-                $scope.alertMessage = response.data.error;
+            if (!response.data.loggedIn) {
+            toastr.options = $rootScope.toastOptions;
+            toastr["error"](response.data.error);
             }
             else {
                 location.reload();
