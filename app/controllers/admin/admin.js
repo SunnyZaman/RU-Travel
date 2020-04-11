@@ -219,3 +219,75 @@ app.controller('admin-attractions-controller', function ($scope, $http, $uibModa
         }
     }
 })
+
+// Reviews
+app.controller('admin-reviews-controller', function ($scope, $http, $uibModal, $rootScope) {
+    $scope.loadReviews = function () {
+        console.log("Loading reviews...");
+        $scope.getReviews();
+    }
+    $scope.getReviews = function () {
+        $http({
+            method: "POST",
+            url: "server/admin/fetch/reviews.php"
+        })
+            .then(function (response) {
+                console.log("Response: ", response.data);
+                $scope.reviews = response.data;
+
+            }, function (error) {
+                console.error(error);
+            });
+    }
+    $scope.openReviewModal = function (action, user) {
+        var data = null;
+        if (action === 'edit') {
+            data = user;
+        }
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/admin/modals/review.html',
+            controller: 'review-modal-controller',
+            backdrop: 'static',
+            size: 'lg',
+            resolve: {
+                data: function () {
+                    return data;
+                }
+            }
+        });
+        modalInstance.result.then(function (response) {
+            if (response) {
+                console.log("reloading reviews...");
+                $scope.getReviews();
+            }
+        }).catch(function (reason) {
+            console.log("Modal dismissed with reason: ", reason);
+        });
+    }
+    $scope.deleteReview = function (id) {
+
+        if (confirm("Are you sure you want to remove this Review?")) {
+            var data = { table: "RUTravelReviews", id: id, value: "Review" };
+            $http({
+                method: "POST",
+                url: "server/admin/delete.php",
+                data: data
+            }).then(function (response) {
+                console.log(response);
+
+                var toast = "success";
+                if (!response.data.deleted) {
+                    toast = "error";
+                }
+                toastr.options = $rootScope.toastOptions;
+                toastr[toast](response.data.message);
+                if (response.data.deleted) {
+                    $scope.getReviews();
+                }
+            }, function (error) {
+                console.error(error);
+            });
+        }
+    }
+})
