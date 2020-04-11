@@ -26,14 +26,14 @@ session_start();
   <script src="app/js/toastr.min.js"></script>
   <script src="app/routing/routes.js"></script>
   <script src="app/controllers/authenticate.js"></script>
-  <script src="app/controllers/plans.js"></script>
-  <script src="app/controllers/modals.js"></script>
-  <script src="app/controllers/orders.js"></script>
-  <script src="app/controllers/about.js"></script>
-  <script src="app/controllers/admin.js"></script>
-
+  <script src="app/controllers/user/plans.js"></script>
+  <script src="app/controllers/user/modals.js"></script>
+  <script src="app/controllers/user/about.js"></script>
+  <script src="app/controllers/user/orders.js"></script>
+  <script src="app/controllers/admin/modals.js"></script>
+  <script src="app/controllers/admin/admin.js"></script>
  </head>
- <body ng-app="app">
+ <body ng-app="app" ng-controller="app-controller">
      <?php
    if(!isset($_SESSION["Email"]))
    { ?>
