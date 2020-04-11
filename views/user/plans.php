@@ -63,7 +63,8 @@ if($_SESSION['isAdmin']==='0') : ?>
 <h1 class="table-title"> Search Results</h1>
 <p class="font-weight-light font-italic float-left">Select one or two places then click the view plans button</p>
 <button type="button" ng-click="viewPlans()" ng-disabled="disableView" class="btn btn-info float-right">View Plans</button>
-    <table class="table table-striped">
+<div class="table-container">    
+<table class="table table-striped">
     <tr>
         <th>Selected</th>
         <th>Attraction</th>
@@ -83,6 +84,7 @@ if($_SESSION['isAdmin']==='0') : ?>
         <td>{{ value.Price | currency:'$' }}</td>
     </tr>
     </table>
+</div>
     </div>
     <p ng-switch-when="false" class="font-weight-bold">No Results</p>
     </div>

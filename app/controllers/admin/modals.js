@@ -135,3 +135,75 @@ app.controller('place-modal-controller', function ($scope, $uibModalInstance, da
         }
     }
 })
+
+//Attractions
+app.controller('attraction-modal-controller', function ($scope, $uibModalInstance, data, $http, $rootScope) {
+    if (data !== null) {
+        $scope.action = "Edit";
+        $scope.submitType = "Save";
+        $scope.attractionData = {
+            image: data.AttractionImage,
+            address: data.AttractionAddress,
+            description: data.AttractionDescription,
+            price: Number(data.Price),
+            latitude: Number(data.Latitude),
+            longitude: Number(data.Longitude),
+            rating: Number(data.RatingTotal),
+            attraction: data.Attraction,
+            currentAttraction: data.Attraction
+        }
+    }
+    else {
+        $scope.action = "Add";
+        $scope.submitType = "Add";
+    }
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss();
+    }
+    $scope.submitAttraction = function () {
+        switch ($scope.action) {
+            case "Edit":
+                $http({
+                    method: "POST",
+                    url: "server/admin/update/attraction.php",
+                    data: $scope.attractionData
+                }).then(function (response) {
+                    console.log("Response: ", response);
+                    var toast = "success";
+                    if (!response.data.updated) {
+                        toast = "error";
+                    }
+                    toastr.options = $rootScope.toastOptions;
+                    toastr[toast](response.data.message);
+                    if (response.data.updated) {
+                        $uibModalInstance.close(response.data.updated);
+                    }
+                }, function (error) {
+                    console.error(error);
+                });
+                break;
+            case "Add":
+                $http({
+                    method: "POST",
+                    url: "server/admin/insert/attraction.php",
+                    data: $scope.attractionData
+                }).then(function (response) {
+                    console.log("Response: ", response);
+                    var toast = "success";
+                    if (!response.data.inserted) {
+                        toast = "error";
+                    }
+                    toastr.options = $rootScope.toastOptions;
+                    toastr[toast](response.data.message);
+                    if (response.data.inserted) {
+                        $uibModalInstance.close(response.data.inserted);
+                    }
+                }, function (error) {
+                    console.error(error);
+                });
+                break;
+            default:
+                break;
+        }
+    }
+})

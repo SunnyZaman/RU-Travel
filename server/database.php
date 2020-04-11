@@ -36,7 +36,7 @@
         Latitude FLOAT NOT NULL,
         Longitude FLOAT NOT NULL,
         RatingTotal FLOAT DEFAULT 0,
-        Attraction VARCHAR(250) NOT NULL,
+        Attraction VARCHAR(250) NOT NULL UNIQUE,
         FOREIGN KEY (Attraction)
         REFERENCES RUTravelPlaces(Attraction)
         ON DELETE CASCADE
