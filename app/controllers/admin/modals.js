@@ -7,6 +7,7 @@ app.controller('user-modal-controller', function ($scope, $uibModalInstance, dat
             firstName: data.FirstName,
             lastName: data.LastName,
             email: data.Email,
+            currentEmail: data.Email,
             phoneNumber: data.Telephone,
             address: data.UserAddress
         }
@@ -21,7 +22,24 @@ app.controller('user-modal-controller', function ($scope, $uibModalInstance, dat
     $scope.submitUser = function () {
         switch ($scope.action) {
             case "Edit":
-
+                $http({
+                    method: "POST",
+                    url: "server/admin/update/user.php",
+                    data: $scope.userData
+                }).then(function (response) {
+                    console.log("Response: ", response);
+                    var toast = "success";
+                    if (!response.data.updated){
+                        toast="error";
+                    }
+                    toastr.options = $rootScope.toastOptions;
+                    toastr[toast](response.data.message);
+                    if (response.data.updated){
+                        $uibModalInstance.close(response.data.updated);
+                    }
+                }, function (error) {
+                    console.error(error);
+                });
                 break;
             case "Add":
                 $http({
