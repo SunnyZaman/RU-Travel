@@ -10,8 +10,6 @@ $maxPrice =  $search_data['maxPrice'];
 $query = "SELECT * FROM RUTravelPlaces INNER JOIN RUTravelAttractions USING (Attraction)";
 $where = array();
 $conditions = '';
-// if($continent !=='' || $country !=='' || $city !=='' || $placeType !=='' || $minPrice !==null || $maxPrice !==null){
-    // $query .= " WHERE";
     if($continent !== ''){
         $where[] = "Continent='".$continent."'";
     }
@@ -47,29 +45,4 @@ $conditions = '';
         }
     }
     echo json_encode($output);
-    // }
-// if($search_data===null){
-//     $search_data = "HELLLLO"
-// }
-// if(!empty($search_data['continent']) && !empty($search_data['country']) && !empty($search_data['city']) && !empty($search_data['placeType']) &&
-// !empty($search_data['minPrice']) && !empty($search_data['maxPrice'])){
-//     $query
-// }
-// if(!empty($search_data['continent']))
-// {
-//  $continentSearch = $search_data['continent']+;
-// }
-
-// if(!empty($search_data['country']))
-// {
-//  $continentSearch = $search_data['continent'];
-// }
-//  $query = "SELECT * FROM RUTravelPlaces ORDER BY Continent ASC";  
-//  $result = $conn->query($query);
-//    if($result->num_rows > 0) {
-//        while($row = $result->fetch_assoc()){
-//         $output[] = $row;  
-//    }
-// }
-
 ?>

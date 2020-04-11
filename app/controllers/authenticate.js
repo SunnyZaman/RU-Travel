@@ -19,14 +19,12 @@ app.controller('auth-controller', function ($scope, $http, $rootScope) {
     };
 
     $scope.submitRegister = function () {
-        console.log($scope.registerData);
         
         $http({
             method: "POST",
             url: "server/auth/register.php",
             data: $scope.registerData
         }).then(function (response) {
-            console.log("Response: ", response);
             var toast = "error";
             if (response.data.registered){
                 toast="success";
@@ -42,13 +40,11 @@ app.controller('auth-controller', function ($scope, $http, $rootScope) {
     };
 
     $scope.submitLogin = function () {
-        console.log($scope.loginData);
         $http({
             method: "POST",
             url: "server/auth/login.php",
             data: $scope.loginData
         }).then(function (response) {
-            console.log("Response: ", response);
             if (!response.data.loggedIn) {
             toastr.options = $rootScope.toastOptions;
             toastr["error"](response.data.error);

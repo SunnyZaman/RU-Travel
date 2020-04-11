@@ -41,9 +41,6 @@ app.controller('app-controller', function($rootScope){
 })
 app.controller('header-controller', function ($scope, $location) {
     $scope.isActive = function (viewLocation) { 
-        console.log(viewLocation);
-        console.log($location.path());
-        
         return viewLocation === $location.path();
     };
 })

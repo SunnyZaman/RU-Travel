@@ -28,7 +28,6 @@ app.controller('user-modal-controller', function ($scope, $uibModalInstance, dat
                     url: "server/admin/update/user.php",
                     data: $scope.userData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.updated) {
                         toast = "error";
@@ -48,7 +47,6 @@ app.controller('user-modal-controller', function ($scope, $uibModalInstance, dat
                     url: "server/auth/register.php",
                     data: $scope.userData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.registered) {
                         toast = "error";
@@ -96,7 +94,6 @@ app.controller('place-modal-controller', function ($scope, $uibModalInstance, da
                     url: "server/admin/update/place.php",
                     data: $scope.placeData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.updated) {
                         toast = "error";
@@ -116,7 +113,6 @@ app.controller('place-modal-controller', function ($scope, $uibModalInstance, da
                     url: "server/admin/insert/place.php",
                     data: $scope.placeData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.inserted) {
                         toast = "error";
@@ -168,7 +164,6 @@ app.controller('attraction-modal-controller', function ($scope, $uibModalInstanc
                     url: "server/admin/update/attraction.php",
                     data: $scope.attractionData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.updated) {
                         toast = "error";
@@ -188,7 +183,6 @@ app.controller('attraction-modal-controller', function ($scope, $uibModalInstanc
                     url: "server/admin/insert/attraction.php",
                     data: $scope.attractionData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.inserted) {
                         toast = "error";
@@ -238,7 +232,6 @@ app.controller('review-modal-controller', function ($scope, $uibModalInstance, d
                     url: "server/admin/update/review.php",
                     data: $scope.reviewData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.updated) {
                         toast = "error";
@@ -258,7 +251,6 @@ app.controller('review-modal-controller', function ($scope, $uibModalInstance, d
                     url: "server/admin/insert/review.php",
                     data: $scope.reviewData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.inserted) {
                         toast = "error";
@@ -311,7 +303,6 @@ app.controller('order-modal-controller', function ($scope, $uibModalInstance, da
                     url: "server/admin/update/order.php",
                     data: $scope.orderData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.updated) {
                         toast = "error";
@@ -331,7 +322,6 @@ app.controller('order-modal-controller', function ($scope, $uibModalInstance, da
                     url: "server/admin/insert/order.php",
                     data: $scope.orderData
                 }).then(function (response) {
-                    console.log("Response: ", response);
                     var toast = "success";
                     if (!response.data.inserted) {
                         toast = "error";

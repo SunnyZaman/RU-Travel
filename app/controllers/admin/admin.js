@@ -16,7 +16,6 @@ app.controller('admin-users-controller', function ($scope, $http, $uibModal, $ro
             url: "server/admin/fetch/users.php"
         })
             .then(function (response) {
-                console.log("Response: ", response.data);
                 if(response.data!=="null"){
                 $scope.users = response.data;
                 }
@@ -43,7 +42,6 @@ app.controller('admin-users-controller', function ($scope, $http, $uibModal, $ro
         });
         modalInstance.result.then(function (response) {
             if (response) {
-                console.log("reloading users...");
                 $scope.getUsers();
             }
 
@@ -60,8 +58,6 @@ app.controller('admin-users-controller', function ($scope, $http, $uibModal, $ro
                 url: "server/admin/delete.php",
                 data: data
             }).then(function (response) {
-                console.log(response);
-
                 var toast = "success";
                 if (!response.data.deleted) {
                     toast = "error";
@@ -90,7 +86,6 @@ app.controller('admin-places-controller', function ($scope, $http, $uibModal, $r
             url: "server/admin/fetch/places.php"
         })
             .then(function (response) {
-                console.log("Response: ", response.data);
                 if(response.data!=="null"){
                 $scope.places = response.data;
                 }
@@ -117,7 +112,6 @@ app.controller('admin-places-controller', function ($scope, $http, $uibModal, $r
         });
         modalInstance.result.then(function (response) {
             if (response) {
-                console.log("reloading places...");
                 $scope.getPlaces();
             }
 
@@ -134,8 +128,6 @@ app.controller('admin-places-controller', function ($scope, $http, $uibModal, $r
                 url: "server/admin/delete.php",
                 data: data
             }).then(function (response) {
-                console.log(response);
-
                 var toast = "success";
                 if (!response.data.deleted) {
                     toast = "error";
@@ -165,7 +157,6 @@ app.controller('admin-attractions-controller', function ($scope, $http, $uibModa
             url: "server/admin/fetch/attractions.php"
         })
             .then(function (response) {
-                console.log("Response: ", response.data);
                 if(response.data!=="null"){
                 $scope.attractions = response.data;
                 }
@@ -192,7 +183,6 @@ app.controller('admin-attractions-controller', function ($scope, $http, $uibModa
         });
         modalInstance.result.then(function (response) {
             if (response) {
-                console.log("reloading attractions...");
                 $scope.getAttractions();
             }
         }).catch(function (reason) {
@@ -208,8 +198,6 @@ app.controller('admin-attractions-controller', function ($scope, $http, $uibModa
                 url: "server/admin/delete.php",
                 data: data
             }).then(function (response) {
-                console.log(response);
-
                 var toast = "success";
                 if (!response.data.deleted) {
                     toast = "error";
@@ -239,7 +227,6 @@ app.controller('admin-reviews-controller', function ($scope, $http, $uibModal, $
             url: "server/admin/fetch/reviews.php"
         })
             .then(function (response) {
-                console.log("Response: ", response.data);
                 if(response.data!=="null"){
                 $scope.reviews = response.data;
                 }
@@ -267,7 +254,6 @@ app.controller('admin-reviews-controller', function ($scope, $http, $uibModal, $
         });
         modalInstance.result.then(function (response) {
             if (response) {
-                console.log("reloading reviews...");
                 $scope.getReviews();
             }
         }).catch(function (reason) {
@@ -283,8 +269,6 @@ app.controller('admin-reviews-controller', function ($scope, $http, $uibModal, $
                 url: "server/admin/delete.php",
                 data: data
             }).then(function (response) {
-                console.log(response);
-
                 var toast = "success";
                 if (!response.data.deleted) {
                     toast = "error";
@@ -313,7 +297,6 @@ app.controller('admin-orders-controller', function ($scope, $http, $uibModal, $r
             url: "server/admin/fetch/orders.php"
         })
             .then(function (response) {
-                console.log("Order Response: ", response.data);
                 if(response.data!=="null"){
                 $scope.orders = response.data;
                 }
@@ -341,7 +324,6 @@ app.controller('admin-orders-controller', function ($scope, $http, $uibModal, $r
         });
         modalInstance.result.then(function (response) {
             if (response) {
-                console.log("reloading orders...");
                 $scope.getOrders();
             }
         }).catch(function (reason) {
@@ -357,8 +339,6 @@ app.controller('admin-orders-controller', function ($scope, $http, $uibModal, $r
                 url: "server/admin/delete.php",
                 data: data
             }).then(function (response) {
-                console.log(response);
-
                 var toast = "success";
                 if (!response.data.deleted) {
                     toast = "error";
