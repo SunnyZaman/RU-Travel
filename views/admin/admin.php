@@ -11,7 +11,7 @@ if($_SESSION['isAdmin']==='1') : ?>
 </section>
     <section>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link" ng-class="{ active: isActive('users')}" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users">Users</a>
+    <a class="nav-item nav-link" ng-class="{ active: isActive('users') || isActive('')}" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users">Users</a>
     <a class="nav-item nav-link" ng-class="{ active: isActive('places')}" id="places-tab" data-toggle="tab" href="#places" role="tab" aria-controls="places">Places</a>
     <a class="nav-item nav-link" ng-class="{ active: isActive('attractions')}" id="attractions-tab" data-toggle="tab" href="#attractions" role="tab" aria-controls="attractions">Attractions</a>
     <a class="nav-item nav-link" ng-class="{ active: isActive('reviews')}" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews">Reviews</a>
@@ -19,7 +19,9 @@ if($_SESSION['isAdmin']==='1') : ?>
 
   </div>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane" ng-class="{ active: isActive('users')}" id="users" role="tabpanel" aria-labelledby="users-tab">users</div>
+  <div class="tab-pane" ng-class="{active: isActive('users') || isActive('')}" id="users" role="tabpanel" aria-labelledby="users-tab">
+  <div  ng-include="'views/admin/tables/users.html'"></div>
+  </div>
   <div class="tab-pane" ng-class="{ active: isActive('places')}" id="places" role="tabpanel" aria-labelledby="places-tab">places.</div>
   <div class="tab-pane" ng-class="{ active: isActive('attractions')}" id="attractions" role="tabpanel" aria-labelledby="attractions-tab">..attractions.</div>
   <div class="tab-pane" ng-class="{ active: isActive('reviews')}" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">..reviews.</div>

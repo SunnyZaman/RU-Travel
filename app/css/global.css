@@ -103,3 +103,23 @@
 #nav-tab .active{
     color: #495057 !important;
 }
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+.delete{
+    cursor: pointer;
+    color:#8a1104;
+}
+.edit{
+    cursor: pointer;
+    color:#093f9c;
+}
+.delete:hover, .edit:hover{
+    color:#363535;
+    transform: scale(1.5);
+}
+.dropdown-toggle{
+    cursor: pointer;
+}
