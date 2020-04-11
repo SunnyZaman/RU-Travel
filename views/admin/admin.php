@@ -31,7 +31,9 @@ if($_SESSION['isAdmin']==='1') : ?>
   <div class="tab-pane" ng-class="{ active: isActive('reviews')}" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
   <div ng-include="'views/admin/tables/reviews.html'"></div>
   </div>
-  <div class="tab-pane" ng-class="{ active: isActive('orders')}" id="orders" role="tabpanel" aria-labelledby="orders-tab">..orders.</div>
+  <div class="tab-pane" ng-class="{ active: isActive('orders')}" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+  <div ng-include="'views/admin/tables/orders.html'"></div>
+  </div>
 
 </div>
 </section>

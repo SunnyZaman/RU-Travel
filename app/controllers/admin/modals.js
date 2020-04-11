@@ -277,3 +277,76 @@ app.controller('review-modal-controller', function ($scope, $uibModalInstance, d
         }
     }
 })
+// Orders
+app.controller('order-modal-controller', function ($scope, $uibModalInstance, data, $http, $rootScope, $filter) {
+    if (data !== null) {
+        $scope.action = "Edit";
+        $scope.submitType = "Save";
+        $scope.orderData = {
+            package: data.Package,
+            destination: data.Destination,
+            quantity: Number(data.Quantity),
+            orderSubtotal: Number(data.Subtotal.split("$")[1]),
+            subtotal: data.Subtotal,
+            orderTotal: Number(data.Total.split("$")[1]),
+            total: data.Total,
+            email: data.Email,
+            id: data.Id
+        }
+    }
+    else {
+        $scope.action = "Add";
+        $scope.submitType = "Add";
+    }
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss();
+    }
+    $scope.submitOrder = function () {
+        $scope.orderData.subtotal = $filter('currency')($scope.orderData.orderSubtotal);
+        $scope.orderData.total = $filter('currency')($scope.orderData.orderTotal);
+        switch ($scope.action) {
+            case "Edit":
+                $http({
+                    method: "POST",
+                    url: "server/admin/update/order.php",
+                    data: $scope.orderData
+                }).then(function (response) {
+                    console.log("Response: ", response);
+                    var toast = "success";
+                    if (!response.data.updated) {
+                        toast = "error";
+                    }
+                    toastr.options = $rootScope.toastOptions;
+                    toastr[toast](response.data.message);
+                    if (response.data.updated) {
+                        $uibModalInstance.close(response.data.updated);
+                    }
+                }, function (error) {
+                    console.error(error);
+                });
+                break;
+            case "Add":
+                $http({
+                    method: "POST",
+                    url: "server/admin/insert/order.php",
+                    data: $scope.orderData
+                }).then(function (response) {
+                    console.log("Response: ", response);
+                    var toast = "success";
+                    if (!response.data.inserted) {
+                        toast = "error";
+                    }
+                    toastr.options = $rootScope.toastOptions;
+                    toastr[toast](response.data.message);
+                    if (response.data.inserted) {
+                        $uibModalInstance.close(response.data.inserted);
+                    }
+                }, function (error) {
+                    console.error(error);
+                });
+                break;
+            default:
+                break;
+        }
+    }
+})

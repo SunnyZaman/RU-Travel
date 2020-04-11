@@ -10,14 +10,16 @@ app.controller('admin-users-controller', function ($scope, $http, $uibModal, $ro
         $scope.getUsers();
     }
     $scope.getUsers = function () {
+        $scope.users = [];
         $http({
             method: "POST",
             url: "server/admin/fetch/users.php"
         })
             .then(function (response) {
                 console.log("Response: ", response.data);
+                if(response.data!=="null"){
                 $scope.users = response.data;
-
+                }
             }, function (error) {
                 console.error(error);
             });
@@ -82,14 +84,16 @@ app.controller('admin-places-controller', function ($scope, $http, $uibModal, $r
         $scope.getPlaces();
     }
     $scope.getPlaces = function () {
+        $scope.places = [];
         $http({
             method: "POST",
             url: "server/admin/fetch/places.php"
         })
             .then(function (response) {
                 console.log("Response: ", response.data);
+                if(response.data!=="null"){
                 $scope.places = response.data;
-
+                }
             }, function (error) {
                 console.error(error);
             });
@@ -155,14 +159,16 @@ app.controller('admin-attractions-controller', function ($scope, $http, $uibModa
         $scope.getAttractions();
     }
     $scope.getAttractions = function () {
+        $scope.attractions = [];
         $http({
             method: "POST",
             url: "server/admin/fetch/attractions.php"
         })
             .then(function (response) {
                 console.log("Response: ", response.data);
+                if(response.data!=="null"){
                 $scope.attractions = response.data;
-
+                }
             }, function (error) {
                 console.error(error);
             });
@@ -227,13 +233,16 @@ app.controller('admin-reviews-controller', function ($scope, $http, $uibModal, $
         $scope.getReviews();
     }
     $scope.getReviews = function () {
+        $scope.reviews = [];
         $http({
             method: "POST",
             url: "server/admin/fetch/reviews.php"
         })
             .then(function (response) {
                 console.log("Response: ", response.data);
+                if(response.data!=="null"){
                 $scope.reviews = response.data;
+                }
 
             }, function (error) {
                 console.error(error);
@@ -284,6 +293,80 @@ app.controller('admin-reviews-controller', function ($scope, $http, $uibModal, $
                 toastr[toast](response.data.message);
                 if (response.data.deleted) {
                     $scope.getReviews();
+                }
+            }, function (error) {
+                console.error(error);
+            });
+        }
+    }
+})
+// Orders
+app.controller('admin-orders-controller', function ($scope, $http, $uibModal, $rootScope) {
+    $scope.loadOrders = function () {
+        console.log("Loading orders...");
+        $scope.getOrders();
+    }
+    $scope.getOrders = function () {
+        $scope.orders =[];
+        $http({
+            method: "POST",
+            url: "server/admin/fetch/orders.php"
+        })
+            .then(function (response) {
+                console.log("Order Response: ", response.data);
+                if(response.data!=="null"){
+                $scope.orders = response.data;
+                }
+
+            }, function (error) {
+                console.error(error);
+            });
+    }
+    $scope.openOrderModal = function (action, user) {
+        var data = null;
+        if (action === 'edit') {
+            data = user;
+        }
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/admin/modals/order.html',
+            controller: 'order-modal-controller',
+            backdrop: 'static',
+            size: 'lg',
+            resolve: {
+                data: function () {
+                    return data;
+                }
+            }
+        });
+        modalInstance.result.then(function (response) {
+            if (response) {
+                console.log("reloading orders...");
+                $scope.getOrders();
+            }
+        }).catch(function (reason) {
+            console.log("Modal dismissed with reason: ", reason);
+        });
+    }
+    $scope.deleteOrder = function (id) {
+
+        if (confirm("Are you sure you want to remove this Order?")) {
+            var data = { table: "RUTravelInvoices", id: id, value: "Order" };
+            $http({
+                method: "POST",
+                url: "server/admin/delete.php",
+                data: data
+            }).then(function (response) {
+                console.log(response);
+
+                var toast = "success";
+                if (!response.data.deleted) {
+                    toast = "error";
+                }
+                toastr.options = $rootScope.toastOptions;
+                toastr[toast](response.data.message);
+                if (response.data.deleted) {
+                    $scope.getOrders();
                 }
             }, function (error) {
                 console.error(error);
